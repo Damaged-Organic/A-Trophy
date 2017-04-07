@@ -1,0 +1,16 @@
+# ATrophy/Bundle/MeatBundle/Resources/config/config.yml
+parameters:
+    atrophy_meat.social_group_links.facebook:  https://www.facebook.com/a.trophycup
+    atrophy_meat.social_group_links.vkontakte: https://vk.com/a_trophy
+
+    atrophy_meat.emails.no-reply: office@a-trophy.com.ua
+    atrophy_meat.emails.office:   office@a-trophy.com.ua
+    atrophy_meat.emails.personal: grimv01k@gmail.com
+    atrophy_meat.emails.company:  dam-arok@yandex.ru
+
+    atrophy.model.categories: goblets|medals|statuettes|awards
+
+twig:
+    globals:
+        atrophy_meat_social_group_links_facebook:  %atrophy_meat.social_group_links.facebook%
+        atrophy_meat_social_group_links_vkontakte: %atrophy_meat.social_group_links.vkontakte%

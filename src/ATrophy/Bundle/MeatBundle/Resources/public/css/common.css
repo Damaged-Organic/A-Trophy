@@ -1,0 +1,675 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ wrappers start										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.page{
+	width: 100%;
+	min-width: 1000px;
+	min-height: 100%;
+	height: auto;
+	position: relative;
+	overflow: hidden;
+}
+.content{
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+}
+.content.extraP{
+	padding-top: 120px;
+	padding-bottom: 280px;
+}
+.content.extraP.unit{
+	padding-bottom: 380px;
+}
+.content .inner, .inner{
+	width: 100%;
+	max-width: 1000px;
+	min-width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.inner.full{
+	max-width: 100%;
+}
+.content .row{
+	width: 100%;
+	clear: both;
+	overflow: hidden;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ wrappers end										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ header start										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#header{
+	width: 100%;
+	min-width: 1000px;
+	position: relative;
+	z-index: 40;
+}
+#header.extended{
+	position: fixed;
+	top: 0;
+	left: 0;
+	border-bottom: 1px solid #d7d7d7;
+}
+#header nav{
+	width: 100%;
+}
+#header nav ul{
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+#header nav ul li{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: -4px;
+	text-transform: uppercase;
+}
+#header nav ul li:first-child{
+	margin-left: 0;
+}
+#header nav ul li a{
+	display: block;
+	padding: 20px 12px;
+	overflow: hidden;
+}
+#header nav ul li a.logoLink{
+	padding: 0px 12px 0px 16px;
+}
+#header.extended.scrolled nav ul li a{
+	padding: 10px 12px;
+}
+#header nav ul li ul{
+	width: 100%;
+	position: absolute;
+	top: 59px;
+	left: 0;
+	z-index: -1;
+	border-bottom: 1px solid #d7d7d7;
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	-ms-transform: translateY(-100%);
+	-o-transform: translateY(-100%);
+	transform: translateY(-100%);
+	opacity: 0;
+	overflow: hidden;
+}
+#header.extended nav ul li ul{
+	top: 60px;
+}
+#header nav ul li ul li a{
+	font-size: 0.875em;
+	padding: 20px 18px 20px 55px;
+	background: url(../images/submenu-sprite.png) no-repeat 0 2px;
+}
+#header nav ul li ul li:nth-child(2) a{
+	background: url(../images/submenu-sprite.png) no-repeat 0 -110px;
+}
+#header nav ul li ul li:nth-child(3) a{
+	background: url(../images/submenu-sprite.png) no-repeat 0 -51px;
+}
+#header nav ul li ul li:nth-child(4) a{
+	background: url(../images/submenu-sprite.png) no-repeat 0 -173px;
+}
+#header nav ul li ul li a:hover,
+#header nav ul li ul li a.active{
+	background-color: #f7f7f7;
+}
+#header nav ul li:hover ul,
+#header nav ul li a.active + ul{
+	opacity: 1;
+	-webkit-transform: translateY(0%);
+	-moz-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	-o-transform: translateY(0%);
+	transform: translateY(0%);
+}
+#header.extended.scrolled nav ul li ul{
+	top: 40px;
+}
+#header.extended.scrolled nav ul li ul li a{
+	padding: 20px 18px 20px 55px;
+}
+#header nav li a.active{
+	color: #cc5200;
+}
+
+#header .preHeader{
+	width: 100%;
+	min-width: 1000px;
+	overflow: hidden;
+}
+#header .preHeader ul{
+	text-align: right;
+	overflow: hidden;
+}
+#header .preHeader li{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 10px 20px 10px 0;
+	overflow: hidden;
+}
+#header .preHeader .logo{
+	float: left;
+}
+#header .preHeader li span,
+#header .preHeader li p,
+#header .preHeader li a{
+	font-family: "Roboto Condensed", sans-serif;
+	font-size: 0.875em;
+}
+#header .preHeader span:before,
+#header .preHeader a:before,
+#header .preHeader span:before{
+	font-family: "FontAwesome";
+	margin-right: 10px;
+	font-size: 1.2em;
+}
+
+#header .preHeader .phones{
+	width: 145px;
+	height: 40px;
+}
+#header .preHeader .phones a{
+	display: block;
+	width: 80%;
+	height: 50%;
+	text-align: right;
+	overflow: hidden;
+	font-size: 0.85em;
+}
+#header .preHeader .phones span{
+	display: block;
+	width: 20%;
+	height: 100%;
+	float: left;
+	font-size: 1.2em;
+	padding-top: 2px;
+	line-height: 40px;
+	text-align: right;
+	overflow: hidden;
+}
+
+#header .preHeader .inner .widgets{
+	float: right;
+}
+#header .preHeader .widgets > div{
+	height: 40px;
+	float: left;
+	background: #fff;
+	border-radius: 5px;
+	overflow: hidden;
+}
+#header .preHeader .widgets .basket{
+    min-width: 75px;
+}
+#header .preHeader .widgets a{
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    padding: 0 12px;
+    font-size: 1em;
+}
+#header .preHeader .widgets a > .count{
+    padding-left: 5px;
+}
+#header .preHeader .widgets span:before,
+#header .preHeader .widgets a:before{
+	font-size: 1em;
+	margin-right: 0;
+}
+#header .preHeader .widgets .icon{
+	font-size: 1.3em;
+}
+#header .preHeader .search{
+	margin-left: 5px;
+}
+#header .preHeader .search .icon{
+	font-size: 0.875em;
+	margin: 0;
+	padding: 0 15px;
+}
+#header .preHeader .search.isActive{
+	background: #cc5200;
+}
+#header .preHeader .search.isActive .icon{
+	color: #fff;
+}
+#searchPopUp{
+	padding: 50px;
+	background: rgba(215,215,215, 0.8);
+	border-radius: 0;
+}
+#searchPopUp form{
+	display: block;
+	width: 100%;
+	height: 51px;
+	border: 2px solid #d7d7d7;
+}
+#searchPopUp input{
+	display: block;
+	width: 90%;
+	float: left;
+	padding: 16px 15px;
+	border: none;
+}
+#searchPopUp button{
+	display: block;
+	float: right;
+	width: 10%;
+	height: 100%;
+	border: none;
+}
+#searchPopUp button span{
+	font-size: 1.5em;
+}
+#searchPopUp .close{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.25em;
+    cursor: pointer;
+    overflow: hidden;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ header end											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ footer start											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#footer{
+	height: 280px;
+	margin-top: -280px;
+	position: relative;
+	padding-top: 10px;
+	background: 	url(../images/footer-bg-topLane.png) repeat-x 0 0,
+					url(../images/footer-bg.jpg) repeat-x 0 9px;
+}
+#footer.unit{
+	margin-top: -380px;
+}
+#footer ul{
+	width: 100%;
+	max-width: 1000px;
+	min-width: 1000px;
+	margin: 25px auto;
+	text-align: center;
+	overflow: hidden;
+}
+#footer ul li{
+	display: inline-block;
+	max-width: 230px;
+	margin: 0 10px;
+	vertical-align: top;
+}
+#footer ul li h2{
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	font-size: 1em;
+}
+#footer nav a{
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+}
+#footer p{
+	margin: 10px 0;
+}
+#footer .phone{
+	display: block;
+}
+#footer .icon{
+	margin: 15px 5px;
+	font-size: 1.5em;
+}
+#footer img{
+	display: inline-block;
+	margin-top: 10px;
+	width: 60px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ footer end											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ buttons start										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.moreButton{
+	width: 70%;
+	position: absolute;
+	left: 15%;
+	bottom: 30px;
+	overflow: hidden;
+}
+.moreButton a{
+	display: block;
+	text-align: center;
+	padding: 12px 0;
+	text-transform: uppercase;
+	overflow: hidden;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ buttons end										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ navigation start										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.navigation{
+	width: 100%;
+	margin: 20px auto 40px;
+	text-align: center;
+	overflow: hidden;
+}
+.navigation li{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	margin-left: -4px;
+	overflow: hidden;
+}
+.navigation li a{
+	display: block;
+	line-height: 40px;
+	font-size: 1em;
+	background: transparent;
+}
+.navigation .dots{
+	margin-top: 20px;
+}
+.navigation li a.active{
+	background: #cc5200;
+	color: #fff;
+}
+.navigation li:first-child a:hover,
+.navigation li:last-child a:hover{
+	background: transparent;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ navigation end										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ breadcrumbs start									 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.breadcrumbs ul{
+	width: 100%;
+	margin: 20px auto 0;
+	text-align: left;
+	overflow: hidden;
+}
+.breadcrumbs li{
+	display: inline-block;
+}
+.breadcrumbs li:before{
+	padding-right: 5px;
+}
+.breadcrumbs li a{
+	font-size: 0.875em;
+}
+.breadcrumbs li.active a{
+	color: #cc5200;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ breadcrumbs end									 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ notification start									 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#notify{
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 150;
+	border-top: 1px solid #e2e2e2;
+	background: rgba(247, 247, 247, 0.9);
+	-webkit-transform: translateY(120%);
+	-moz-transform: translateY(120%);
+	-ms-transform: translateY(120%);
+	-o-transform: translateY(120%);
+	transform: translateY(120%);
+	text-align: center;
+	overflow: hidden;
+}
+#notify.isActive{
+	-webkit-transform: translateY(0%);
+	-moz-transform: translateY(120%);
+	-ms-transform: translateY(0%);
+	-o-transform: translateY(0%);
+	transform: translateY(0%);
+}
+#notify p{
+	padding: 5px 0;
+	color: #363636;
+}
+#notify p:first-child{
+	padding-top: 15px;
+}
+#notify p:last-child{
+	padding-bottom: 15px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ notification end										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ loader start											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.loader{
+	display: block;
+	width: 50px;
+	height: 50px;
+	margin: 20px auto;
+	text-align: center;
+	overflow: hidden;
+}
+.loader span{
+	display: inline-block;
+	font-size: 3em;
+	color: #cc5200;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-animation: loader .8s linear 0s infinite;
+	-moz-animation: loader .8s linear 0s infinite;
+	-ms-animation: loader .8s linear 0s infinite;
+	-o-animation: loader .8s linear 0s infinite;
+	animation: loader .8s linear 0s infinite;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ loader end											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ popup start											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.popUpOverlay{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 100;
+	background: rgba(0, 0, 0, .7);
+	-webkit-transform: translate3d(-100%, -100%, 0);
+	-moz-transform: translate3d(-100%, -100%, 0);
+	-ms-transform: translate3d(-100%, -100%, 0);
+	-o-transform: translate3d(-100%, -100%, 0);
+	transform: translate3d(-100%, -100%, 0);
+	overflow: hidden;
+}
+.popUpOverlay.isActive{
+	-webkit-transform: translate3d(0%, 0%, 0);
+	-moz-transform: translate3d(0%, 0%, 0);
+	-ms-transform: translate3d(0%, 0%, 0);
+	-o-transform: translate3d(0%, 0%, 0);
+	transform: translate3d(0%, 0%, 0);
+}
+.popUpOverlay .close{
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 2em;
+	cursor: pointer;
+	overflow: hidden;
+}
+.popUp{
+	width: 600px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	border-radius: 5px;
+	z-index: 101;
+	-webkit-transform: translate3d(150%, 150%, 0) scale(0);
+	-moz-transform: translate3d(150%, 150%, 0) scale(0);
+	-ms-transform: translate3d(150%, 150%, 0) scale(0);
+	-o-transform: translate3d(150%, 150%, 0) scale(0);
+	transform: translate3d(150%, 150%, 0) scale(0);
+	overflow: hidden;
+}
+.popUp.isActive{
+	-webkit-transform: translate3d(-50%, -50%, 0) scale(1);
+	-moz-transform: translate3d(-50%, -50%, 0) scale(1);
+	-ms-transform: translate3d(-50%, -50%, 0) scale(1);
+	-o-transform: translate3d(-50%, -50%, 0) scale(1);
+	transform: translate3d(-50%, -50%, 0) scale(1);
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ popup end											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ tabs start											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.tabs,
+.tabs ul{
+	width: 100%;
+	overflow: hidden;
+}
+.tabs .labelsWrap{
+	width: 100%;
+	overflow: hidden;
+}
+.tabs .label{
+	display: block;
+	float: left;
+	padding: 12px 15px;
+	overflow: hidden;
+}
+.tabs li{
+	display: none;
+	width: 100%;
+	min-height: 100%;
+	background: #fff;
+	overflow: hidden;
+}
+.tabs .label.active{
+	background: #fff;
+}
+.tabs li.active{
+	display: block;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ tabs end											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ admin addOns start         ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#adminPanel{
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 1000;
+    -webkit-transition: transform .5s ease;
+    -o-transition: transform .5s ease;
+    transition: transform .5s ease;
+    -webkit-transform: translateY(-50%) translateX(-80px);
+    -ms-transform: translateY(-50%) translateX(-80px);
+    -o-transform: translateY(-50%) translateX(-80px);
+    transform: translateY(-50%) translateX(-80px);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #363636;
+    overflow: hidden;
+}
+#adminPanel:hover{
+    -webkit-transform: translateY(-50%) translateX(0px);
+    -ms-transform: translateY(-50%) translateX(0px);
+    -o-transform: translateY(-50%) translateX(0px);
+    transform: translateY(-50%) translateX(0px);
+}
+#adminPanel ul{
+    height: 40px;
+    overflow: hidden;
+}
+#adminPanel li{
+    display: inline-block;
+    width: 40px;
+    height: 100%;
+    margin-left: -4px;
+    overflow: hidden;
+}
+#adminPanel li:first-child{
+    margin-left: 0;
+}
+#adminPanel li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #fff;
+    -webkit-transition: transform .5s ease;
+    -o-transition: transform .5s ease;
+    transition: transform .5s ease;
+    overflow: hidden;
+}
+#adminPanel li a:before{
+    display: inline-block;
+    margin-top: 1.7px;
+}
+#adminPanel:hover li:last-child a,
+#adminPanel li a:hover{
+    color: #cc5200;
+}
+.editable{
+    width: 40px !important;
+    height: 40px !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 2.5em !important;
+    color: #cc5200;
+    background: #fff !important;
+    text-align: center !important;
+    line-height: 40px !important;
+    -webkit-transition: color .5s ease;
+    -o-transition: color .5s ease;
+    transition: color .5s ease;
+    overflow: hidden;
+}
+.editable:hover{
+    color: #363636;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ admin addOns end          ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

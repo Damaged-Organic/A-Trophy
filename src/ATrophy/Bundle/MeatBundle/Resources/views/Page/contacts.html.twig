@@ -1,0 +1,89 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/Page/contacts.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain route %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/contacts.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content extraP clear contacts">
+        <div class="inner full smokeBg">
+            <section class="inner">
+                <h1 class="underBorder upperCase darkGray">{{ 'headline.contacts'|trans }}</h1>
+                <div id="map" class="pseudoSmokeBg"></div>
+                <div class="info" itemscope itemtype="http://schema.org/Organization">
+                    <h2 class="darkGray" itemprop="name">{{ 'company.name'|trans }}</h2>
+                    <div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <span class="darkGray">{{ 'label.address'|trans }}:</span>
+                        {% for address in contacts.address %}
+                            {% set address = address.credential|split(',') %}
+                            {% set city = address.0 %}
+                            {% set street = [address.1, address.2]|join(', ') %}
+                            <span class="darkGray" itemprop="addressLocality">{{ city }}</span>,
+                            <span class="darkGray" itemprop="streetAddress">{{ street }}</span>
+                        {% endfor %}
+                    </div>
+                    {% for email in contacts.email %}
+                        <a href="mailto:{{ email.credential }}" class="email darkGray orangeHover easeInOutQuad">{{ 'label.email'|trans }}: <span itemprop="email">{{ email.credential }}</span></a>
+                    {% endfor %}
+                    {% for phone in contacts.phone %}
+                        <a href="tel:{{ phone.credential|replace({' ': null, '(': null, ')': null, '-': null}) }}" class="phone darkGray orangeHover easeInOutQuad" itemprop="telephone">
+                            {{ phone.credential }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        <section class="inner">
+            <h1 class="underBorder upperCase darkGray">{{ 'headline.feedback'|trans }}</h1>
+            <form action="{{ path('atrophy_feedback_send') }}" id="feedback" method="POST" {{ form_enctype(form) }}>
+                <div class="lane clear">
+                    {{ form_widget(form.name,
+                        { 'attr': { 'class': 'bs easeInOutQuad', 'placeholder': 'form.name.placeholder'|trans, 'data-rule-required': "true", 'data-msg-required': 'form.name.required'|trans } }) }}
+                    {{ form_widget(form.email,
+                        { 'attr': { 'class': 'bs easeInOutQuad', 'placeholder': 'form.email.placeholder'|trans, 'data-rule-required': "true", 'data-msg-required': 'form.email.required'|trans, 'data-rule-email': "true", 'data-msg-email': 'form.email.wrong'|trans } }) }}
+                    {{ form_widget(form.phone,
+                        { 'attr': { 'class': 'bs easeInOutQuad', 'placeholder': 'form.phone.placeholder'|trans }, 'id': "phone" }) }}
+                </div>
+                {{ form_widget(form.subject,
+                    { 'attr': { 'class': 'bs easeInOutQuad', 'placeholder': 'form.subject.placeholder'|trans } }) }}
+                {{ form_widget(form.message,
+                    { 'attr': { 'class': 'bs easeInOutQuad', 'placeholder': 'form.message.placeholder'|trans, 'data-rule-required': "true", 'data-msg-required': 'form.message.required'|trans } }) }}
+
+                {{ form_rest(form) }}
+
+                <button class="bs easeInOutQuad clear" type="submit">{{ 'form.send'|trans }}</button>
+            </form>
+        </section>
+        <div id="notify" class="easeInOutQuad bs">
+            <div class="errorBox"></div>
+            <div class="successBox"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/maskPhone.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/validate.min.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/contacts.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(function(){
+            header.init();
+            search.init();
+            contacts.init();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/commonFilter.html.twig #}
+<section class="panel bs">
+    <h2 class="darkGray">Фильтры</h2>
+    {% if allowPromotionFilter %}
+        <input type="checkbox" name="filter[is_promo]" value="yes" id="onSale"
+               {% if filter_parameters.is_promo is defined and filter_parameters.is_promo is not null %}checked="checked"{% endif %}>
+        <label for="onSale" class="fa fa-square darkGray orangeHover pseudoGray easeInOutQuad">только акционные</label>
+    {% else %}
+        <input type="hidden" name="filter[is_promo]" value="yes">
+    {% endif %}
+    <input type="checkbox" name="filter[is_stock]" value="yes" id="availability"
+           {% if filter_parameters.is_stock is defined and filter_parameters.is_stock is not null %}checked="checked"{% endif %}>
+    <label for="availability" class="fa fa-square darkGray orangeHover pseudoGray easeInOutQuad mb15">только в наличии</label>
+</section>
+<section class="panel priceBox bs">
+    <h2 class="darkGray">Цены</h2>
+    {% set currentMinPrice = (filter_parameters.min_price is defined) ? filter_parameters.min_price : 0 %}
+    {% set currentMaxPrice = (filter_parameters.max_price is defined) ? filter_parameters.max_price : maxPrice %}
+    <div id="priceRange" class="bs" data-min="0" data-max="{{ maxPrice }}"
+         data-current-min="{{ currentMinPrice }}"
+         data-current-max="{{ currentMaxPrice }}">
+        <input type="hidden" name="filter[min_price]" value="{{ currentMinPrice }}" class="hPriceLabel">
+        <input type="hidden" name="filter[max_price]" value="{{ currentMaxPrice }}" class="hPriceLabel">
+    </div>
+    <span class="priceLabel darkGray">от <span id="priceMin" class="stableSize orange">{{ currentMinPrice }}</span> UAH</span>
+    <span class="priceLabel darkGray">до <span id="priceMax" class="stableSize orange">{{ currentMaxPrice }}</span> UAH</span>
+</section>

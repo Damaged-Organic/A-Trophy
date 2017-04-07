@@ -1,0 +1,6 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Inventory/addonCell.html.twig #}
+<span class='deleteAddOn fa fa-times-circle darkGray orangeHover easeInOutQuad' data-path='{{ path('atrophy_inventory_delete', { 'productId': productId }) }}' data-info='{{ data }}'></span>
+<figure>
+    {% set image = asset_exists(image) ? image : 'bundles/atrophymeat/images/placeholders/no_photo_addon_thumb.jpg' %}
+    <img src='{{ asset(image) }}' alt='token'>
+</figure>

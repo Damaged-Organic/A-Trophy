@@ -1,0 +1,16 @@
+# ATrophy/Bundle/MeatBundle/Resources/config/services.yml
+parameters:
+    atrophy.twig.floatval_extension.class:     ATrophy\Bundle\MeatBundle\Twig\FloatvalExtension
+    atrophy.twig.asset_exists_extension.class: ATrophy\Bundle\MeatBundle\Twig\AssetExistsExtension
+
+services:
+    atrophy.twig.floatval_extension:
+        class:     %atrophy.twig.floatval_extension.class%
+        tags:
+            - { name: twig.extension }
+
+    atrophy.twig.asset_exists_extension:
+        class:     %atrophy.twig.asset_exists_extension.class%
+        arguments: ['@kernel']
+        tags:
+            - { name: twig.extension }

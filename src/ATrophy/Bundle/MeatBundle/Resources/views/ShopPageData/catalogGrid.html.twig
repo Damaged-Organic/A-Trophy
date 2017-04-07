@@ -1,0 +1,50 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/catalogGrid.html.twig #}
+{% for product in products %}
+    {% set productAttributes = {
+        'isPromo':       ( product.isPromo ) ? 'onSale' : null,
+        'isStock':       ( product.isStock ) ? 'в наличии' : 'нет в наличии',
+        'minPrice':      ( product.minPrice ) ? product.minPrice ~ ' UAH' : 'цена не указана',
+        'minPromoPrice': ( product.minPromoPrice ) ? product.minPromoPrice ~ ' UAH' : null
+    } %}
+    {% set isHidden = ( isAjaxRequest ) ? 'hidden' : null %}
+    <div class="item bs borderLightGray smokeBg {{ productAttributes.isPromo }} {{ isHidden }}">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('atrophy_bone_product', { 'productId': product.id }) }}" class="editable fa fa-pencil-square" target="_blank"></a>
+        {% endif %}
+        <figure class="bs whiteBg">
+            {% set assetFile = 'bundles/atrophymeat/images/store/products/' ~ product.id ~ '/' ~ product.imageThumb %}
+            {% set assetFile = asset_exists(assetFile) ? assetFile : 'bundles/atrophymeat/images/placeholders/no_photo_item_thumb.jpg' %}
+			<a href="{{ path(modelRoute, { 'category': categoryParameter, 'id': product.id, 'imprint': product.imprint }) }}">
+				<img src="{{ asset(assetFile) }}" alt="{{ product.title }}">
+			</a>
+        </figure>
+        <div class="info smokeBg">
+            <h2 class="orange">{{ ( product.title|length > 35 ) ? product.title[:35] ~ '...' : product.title }}</h2>
+            {% if productAttributes.minPromoPrice == 0 and productAttributes.minPrice == 0 %}
+                <p class="price darkGray upperCase">Цена не указана</p>
+            {% else %}
+                {% if productAttributes.minPromoPrice %}
+                    <p class="price darkGray upperCase">{{ productAttributes.minPromoPrice }} <sup class="gray">{{ productAttributes.minPrice }}</sup></p>
+                {% else %}
+                    <p class="price darkGray upperCase">{{ productAttributes.minPrice }}</p>
+                {% endif %}
+            {% endif %}
+            <p class="availability gray">
+                {% if is_granted('ROLE_ADMIN') %}
+                    {{ ( product.isVisible ) ? 'виден, ' : 'скрыт, ' }}
+                {% endif %}
+                {{ productAttributes.isStock }}
+            </p>
+			<div class="rating clear onGrid">
+                {% for rating in 5..1 %}
+                    <span class="star gray {{ ( product.ratingScore >= rating ) ? 'active' : '' }}" title="{{ rating }}"></span>
+                {% endfor %}
+			</div>
+            <div class="moreButton orangeBg">
+                <a href="{{ path(modelRoute, { 'category': categoryParameter, 'id': product.id, 'imprint': product.imprint }) }}" class="white orangeHover lightGrayBgHover easeInOutQuad">детальнее</a>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <h3 class="orange noItems">По данному запросу товаров в магазине не найдено</h3>
+{% endfor %}

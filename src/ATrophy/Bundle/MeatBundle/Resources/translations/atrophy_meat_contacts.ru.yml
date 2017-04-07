@@ -1,0 +1,28 @@
+# ATrophy/Bundle/MeatBundle/Resources/translations/atrophy_meat_contacts.ru.yml
+headline:
+    contacts: Наши контакты
+    feedback: Форма обратной связи
+
+company:
+    name: Интернет-магазин наградной продукции «A-Trophy»
+
+label:
+    address: Адрес
+    email:   E-mail
+
+form:
+    name:
+        placeholder: Введите ваше имя
+        required:    Пожалуйста, введите ваше имя
+    email:
+        placeholder: Введите ваш e-mail
+        required:    Пожалуйста, введите ваш e-mail
+        wrong:       Пожалуйста, введите корректный e-mail
+    phone:
+        placeholder: Введите ваш телефон
+    subject:
+        placeholder: Введите тему сообщения
+    message:
+        placeholder: Введите сообщение
+        required:    Необходимо ввести сообщение
+    send: Отправить

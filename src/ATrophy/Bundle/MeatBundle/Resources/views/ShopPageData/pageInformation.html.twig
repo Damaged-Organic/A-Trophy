@@ -1,0 +1,24 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/pageInformation.html.twig #}
+{% if pageInformation.totalRecords %}
+    <div id="shown">
+        <p class="darkGray">Страница
+            <span class="stableSize orange">{{ pageInformation.currentPage }}</span>:
+            {% if pageInformation.lastRecord == 1 %}
+                показан <span class="stableSize orange">единственный</span>
+            {% elseif pageInformation.firstRecord == pageInformation.lastRecord %}
+                показан <span class="stableSize orange">последний</span>
+            {% else %}
+                показано <span class="stableSize orange">{{ pageInformation.firstRecord }}-{{ pageInformation.lastRecord }}</span>
+            {% endif %}
+            {% if pageInformation.totalRecords == 1 %}
+                товар
+            {% else %}
+                из <span class="stableSize orange">{{ pageInformation.totalRecords }}</span> товаров
+            {% endif %}
+        </p>
+    </div>
+{% else %}
+    <div id="shown">
+        <p class="darkGray">Товаров <span class="stableSize orange">нет</span></p>
+    </div>
+{% endif %}

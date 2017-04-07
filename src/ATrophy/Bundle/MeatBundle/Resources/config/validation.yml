@@ -1,0 +1,79 @@
+# ATrophy/Bundle/MeatBundle/Resources/config/validation.yml
+ATrophy\Entity\Meat\Feedback:
+    properties:
+        name:
+            - NotBlank:
+                message: "Пожалуйста, введите ваше имя"
+            - Length:
+                min:        2
+                max:        100
+                minMessage: "Имя не должно быть короче 2 символов"
+                maxMessage: "Имя не должно быть длиннее 100 символов"
+        email:
+            - NotBlank:
+                message: "Пожалуйста, введите ваш e-mail"
+            - Email:
+                message: "Пожалуйста, введите корректный e-mail"
+        phone:
+            - ATrophy\Bundle\MeatBundle\Validator\Constraints\Phone: ~
+        message:
+            - NotBlank:
+                message: "Необходимо ввести сообщение"
+            - Length:
+                min:         5
+                max:         500
+                minMessage: "Сообщение не должно быть короче 5 символов"
+                maxMessage: "Сообщение не должно быть длиннее 500 символов"
+
+ATrophy\Entity\Order\Order:
+    properties:
+        clientName:
+            - NotBlank:
+                message: "Пожалуйста, введите ваше имя"
+            - Length:
+                min:        2
+                max:        100
+                minMessage: "Имя не должно быть короче 2 символов"
+                maxMessage: "Имя не должно быть длиннее 100 символов"
+
+        clientEmail:
+            - NotBlank:
+                message: "Пожалуйста, введите ваш e-mail"
+            - Email:
+                message: "Пожалуйста, введите корректный e-mail"
+
+        clientPhone:
+            - ATrophy\Bundle\MeatBundle\Validator\Constraints\Phone: ~
+
+        deliveryType:
+            - Choice:
+                choices: [selfDelivery, shopDelivery]
+                message: "Пожалуйста, укажите корректный способ доставки"
+
+        deliveryRegion:
+            - NotBlank:
+                groups: [shopDelivery]
+                message: "Пожалуйста, укажите область"
+
+        deliveryCity:
+            - NotBlank:
+                groups: [shopDelivery]
+                message: "Пожалуйста, укажите город"
+
+        deliveryAddress:
+            - NotBlank:
+                groups: [shopDelivery]
+                message: "Пожалуйста, укажите адрес"
+
+        deliveryService:
+            - NotBlank:
+                groups: [shopDelivery]
+                message: "Пожалуйста, укажите транспортную компанию"
+            - Choice:
+                choices: [newPost, gunsel, inTime]
+                message: "Пожалуйста, укажите корректную транспортную компанию"
+
+        serviceOffice:
+            - NotBlank:
+                groups: [shopDelivery]
+                message: "Пожалуйста, укажите номер отделения"

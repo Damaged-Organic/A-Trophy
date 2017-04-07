@@ -1,0 +1,20 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: a_trophy
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: mail.ukraine.com.ua
+    mailer_user: office@a-trophy.com.ua
+    mailer_password: 05vY1CvA1mEd
+    locale: ru
+    secret: '+<#symf0ny_a_trophy>+'
+    developers.company_name: CHEERS
+    developers.website_link: http://cheersunlimited.com.ua
+twig:
+    globals:
+        developers_company_name: '%developers.company_name%'
+        developers_website_link: '%developers.website_link%'

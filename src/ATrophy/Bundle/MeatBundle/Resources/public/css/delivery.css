@@ -1,0 +1,50 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ delivery start 										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.content.delivery{
+	padding-bottom: 300px;
+	background: url(../images/delivery/delivery-bg.jpg) repeat 0 0;
+}
+.content.delivery .inner{
+	margin-top: 20px;
+}
+.content.delivery p{
+	text-align: center;
+	padding: 20px 100px;
+}
+.content.delivery .companys{
+	width: 100%;
+	overflow: hidden;
+}
+.content.delivery .companys figure{
+	width: 23%;
+	margin: 50px 1% 40px;
+	float: left;
+	box-shadow: 0 0 10px #7a7a7a;
+	overflow: hidden;
+}
+.content.delivery .types{
+	width: 100%;
+	margin-bottom: 40px;
+	overflow: hidden;
+}
+.content.delivery .types .item{
+	width: 47.5%;
+	height: 400px;
+	margin: 10px 0 10px 2%;
+	float: left;
+	box-shadow: 0 0 10px #7a7a7a;
+	overflow: hidden;
+}
+.content.delivery .types .item figure{
+	width: 120px;
+	height: 120px;
+	margin: 50px auto 20px;
+	overflow: hidden;
+}
+.content.delivery .types .item p{
+	padding: 20px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ delivery end 										 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

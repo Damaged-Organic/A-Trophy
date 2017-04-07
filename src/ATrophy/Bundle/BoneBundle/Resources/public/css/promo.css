@@ -1,0 +1,40 @@
+/*====================================
+**	saleZone start 								**
+====================================*/
+.saleZone input[type=file] + label{
+	display: block;
+	width: 40%;
+	font-size: 1em;
+	color: #f7f7f7;
+	margin: 30px auto;
+	text-align: center;
+	background: #cc5200;
+	border: 1px solid #d7d7d7;
+}
+.saleZone input[type=file] + label:before{
+	display: block;
+	font-size: 2em;
+	margin-bottom: 5px;
+	font-family: "FontAwesome";
+	content: "\f093";
+}
+.saleZone input[type=file] + label:hover{
+	background: #f7f7f7;
+	color: #cc5200;
+}
+
+.saleZone .wrap{
+	text-align: center;
+}
+.saleZone .photo{
+	display: inline-block;
+	width: 45%;
+	margin: 20px;
+	float: none;
+}
+.saleZone .photo figure{
+	padding: 0;
+}
+/*====================================
+**	saleZone end 								**
+====================================*/

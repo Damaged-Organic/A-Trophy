@@ -1,0 +1,11 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/recordsPerPage.html.twig #}
+<div id="perPage">
+    <a href="#" class="label darkGray orangeHover easeInOutQuad">{{ recordsPerPage }}</a>
+    {% set filtersPath = path('atrophy_shop_filter') %}
+    <ul class="smokeBg bs borderLightGray easeInOutQuad">
+        <li><a href="#" class="quantity darkGray orangeHover" data-path="{{ filtersPath }}" data-info='{"count": 24}'>24</a></li>
+        <li><a href="#" class="quantity darkGray orangeHover" data-path="{{ filtersPath }}" data-info='{"count": 36}'>36</a></li>
+        <li><a href="#" class="quantity darkGray orangeHover" data-path="{{ filtersPath }}" data-info='{"count": 48}'>48</a></li>
+        <li><a href="#" class="quantity darkGray orangeHover" data-path="{{ filtersPath }}" data-info='{"count": 72}'>72</a></li>
+    </ul>
+</div>

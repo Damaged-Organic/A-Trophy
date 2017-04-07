@@ -1,0 +1,58 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/Page/delivery_and_payment.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain route %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/delivery.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content extraP clear delivery">
+        <section class="inner">
+            <h1 class="underBorder upperCase darkGray">{{ 'delivery.headline'|trans }}</h1>
+            <p class="darkGray">{{ 'delivery.paragraph_1'|trans|raw }}</p>
+            <p class="stableSize orange">{{ 'delivery.tagline'|trans }}</p>
+            <p class="darkGray">{{ 'delivery.paragraph_2'|trans|raw }}</p>
+            <div class="companys">
+                {% for deliverer in deliverers %}
+                    <figure class="bs borderLightGray"><img src="{{ asset('bundles/atrophymeat/images/delivery/' ~ deliverer.image) }}" alt="{{ deliverer.name }}"></figure>
+                {% endfor %}
+            </div>
+        </section>
+        <section class="inner">
+            <h1 class="underBorder upperCase darkGray">{{ 'payment.headline'|trans }}</h1>
+            <p class="darkGray">{{ 'payment.paragraph_1'|trans|raw }}</p>
+            <div class="types">
+                {% for payment in payments %}
+                    <div class="item borderLightGray smokeBgGlass bs">
+                        <figure>
+                            <img src="{{ asset('bundles/atrophymeat/images/delivery/' ~ payment.image) }}" alt="payment.title">
+                        </figure>
+                        <h2 class="darkGray">{{ payment.title }}</h2>
+                        <p class="darkGray">{{ payment.text }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(function(){
+            header.init();
+            search.init();
+        });
+    </script>
+{% endblock %}

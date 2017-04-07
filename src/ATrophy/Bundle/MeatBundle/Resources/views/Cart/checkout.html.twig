@@ -1,0 +1,281 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Cart/checkout.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/jquery-ui.theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/scrollpane.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/cart.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% if result is defined %}
+        <div class="content extraP cart finalStep clear">
+            <section class="inner">
+                {% if result.orderId is not empty %}
+                    <h1 class="darkGray underBorder">ПРОЦЕСС ПРИОБРЕТЕНИЯ ЗАВЕРШЕН УСПЕШНО!</h1>
+                    <span class="icon fa fa-check-circle orange"></span>
+                    <p class="darkGray">Ваш заказ успешно принят. Информация о вашем заказе выслана на указаный при оформлении e-mail. Наши менеджеры свяжутся с ваши в максимально короткие сроки.</p>
+                    <p class="darkGray larger">Номер вашего заказа: <span class="stableSize orange">{{ result.orderId[:2] ~ '-' ~ result.orderId[2:3] ~ '-' ~ result.orderId[5:] }}</span></p>
+                {% else %}
+                    <h1 class="darkGray underBorder">К СОЖАЛЕНИЮ, ПРОЦЕСС ПРИОБРЕТЕНИЯ ЗАВЕРШИЛСЯ ОШИБКОЙ</h1>
+                    <span class="icon fa fa-check-circle orange"></span>
+                    <p class="darkGray">{{ result.error }}</p>
+                {% endif %}
+                <a href="{{ path('atrophy_meat_homepage') }}" class="done easeInOutQuad">Продолжить</a>
+            </section>
+        </div>
+    {% else %}
+        <div class="content extraP cart clear">
+            <form action="{{ path('atrophy_meat_cart_checkout') }}" method="POST" {{ form_enctype(form) }} id="cartForm">
+                <section class="inner">
+                    <h1 class="underBorder upperCase darkGray">УКАЖИТЕ СВОИ КОНТАКТНЫЕ ДАННЫЕ</h1>
+                    <div class="row">
+                        <label for="userName" class="darkGray">Имя *</label>
+                        {{
+                            form_widget(form.clientName, {
+                                'id':   'userName',
+                                'attr': {
+                                    'class':              'bs easeInOutQuad',
+                                    'placeholder':        "Введите ваше имя",
+                                    'data-rule-required': "true",
+                                    'data-msg-required':  "Пожалуйста, введите ваше имя"
+                                }
+                            })
+                        }}
+                        {% if errorsArray.clientName is defined %}
+                            <p class="error">{{ errorsArray.clientName }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <label for="userMail" class="darkGray">E-mail *</label>
+                        {{
+                            form_widget(form.clientEmail, {
+                                'id':   'userMail',
+                                'attr': {
+                                    'class':              'bs easeInOutQuad',
+                                    'placeholder':        "Введите ваш e-mail",
+                                    'data-rule-required': "true",
+                                    'data-msg-required':  "Пожалуйста, введите ваш e-mail",
+                                    'data-rule-email':    "true",
+                                    'data-msg-email':     "Пожалуйста, введите корректный e-mail"
+                                }
+                            })
+                        }}
+                        {% if errorsArray.clientEmail is defined %}
+                            <p class="error">{{ errorsArray.clientEmail }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <label for="userPhone" class="darkGray">Телефон *</label>
+                        {{
+                            form_widget(form.clientPhone, {
+                                'id':   'userPhone',
+                                'attr': {
+                                    'class':              'bs easeInOutQuad',
+                                    'placeholder':        "Введите ваш телефон",
+                                    'data-rule-required': "true",
+                                    'data-msg-required':  "Пожалуйста, введите ваш телефон"
+                                }
+                            })
+                        }}
+                        {% if errorsArray.clientPhone is defined %}
+                            <p class="error">{{ errorsArray.clientPhone }}</p>
+                        {% endif %}
+                    </div>
+                    <p class="orange">* все поля являются обязательными для заполнения</p>
+                </section>
+                <section class="inner delivery">
+                    <h1 class="underBorder upperCase darkGray">ВЫБЕРИТЕ СПОСОБ ДОСТАВКИ ТОВАРА</h1>
+                    <div class="row">
+                        {{
+                            form_widget(form.deliveryType.0, {
+                                'id': 'selfDelivery'
+                            })
+                        }}
+                        <label for="selfDelivery" class="darkGray easeInOutQuad orangeHover">Самовывоз</label>
+                    </div>
+                    <div class="row">
+                        {{
+                            form_widget(form.deliveryType.1, {
+                                'id': 'shopDelivery'
+                            })
+                        }}
+                        <label for="shopDelivery" class="darkGray easeInOutQuad orangeHover">Доставка</label>
+                        <div class="info easeInOutQuad">
+                            <div class="row">
+                                <label for="userRegion" class="darkGray">Область *</label>
+                                {{
+                                    form_widget(form.deliveryRegion, {
+                                        'id':   'userRegion',
+                                        'attr': {
+                                            'class':              'bs easeInOutQuad',
+                                            'placeholder':        "Выберите область",
+                                            'data-rule-required': "true",
+                                            'data-msg-required':  "Пожалуйста, выберите область"
+                                        }
+                                    })
+                                }}
+                                {% if errorsArray.deliveryRegion is defined %}
+                                    <p class="error">{{ errorsArray.deliveryRegion }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="row">
+                                <label for="userCity" class="darkGray">Город *</label>
+                                {{
+                                    form_widget(form.deliveryCity, {
+                                        'id':   'userCity',
+                                        'attr': {
+                                            'class':              'bs easeInOutQuad',
+                                            'placeholder':        "Укажите город",
+                                            'data-rule-required': "true",
+                                            'data-msg-required':  "Пожалуйста, укажите город"
+                                        }
+                                    })
+                                }}
+                                {% if errorsArray.deliveryCity is defined %}
+                                    <p class="error">{{ errorsArray.deliveryCity }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="row">
+                                <label for="userAddress" class="darkGray">Адрес *</label>
+                                {{
+                                    form_widget(form.deliveryAddress, {
+                                        'id':   'deliveryAddress',
+                                        'attr': {
+                                            'class':              'bs easeInOutQuad',
+                                            'placeholder':        "Укажите адрес",
+                                            'data-rule-required': "true",
+                                            'data-msg-required':  "Пожалуйста, укажите адрес"
+                                        }
+                                    })
+                                }}
+                                {% if errorsArray.deliveryAddress is defined %}
+                                    <p class="error">{{ errorsArray.deliveryAddress }}</p>
+                                {% endif %}
+                            </div>
+                            <p class="orange">* все поля являются обязательными для заполнения</p>
+                            <div class="firm">
+                                <div class="row">
+                                    {{
+                                        form_widget(form.deliveryService.0, {
+                                            'id': 'newPost',
+                                            'attr': {
+                                                'data-rule-required': "true",
+                                                'data-msg-required':  "Пожалуйста, укажите транспортную компанию"
+                                            }
+                                        })
+                                    }}
+                                    <label for="newPost" class="darkGray orangeHover easeInOutQuad">Новая Почта</label>
+                                    {{
+                                        form_widget(form.deliveryService.1, {
+                                            'id': 'gunsel',
+                                            'attr': {
+                                                'data-rule-required': "true",
+                                                'data-msg-required':  "Пожалуйста, укажите транспортную компанию"
+                                            }
+                                        })
+                                    }}
+                                    <label for="gunsel" class="darkGray orangeHover easeInOutQuad">Гюнсел</label>
+                                    {{
+                                        form_widget(form.deliveryService.2, {
+                                            'id': 'inTime',
+                                            'attr': {
+                                                'data-rule-required': "true",
+                                                'data-msg-required':  "Пожалуйста, укажите транспортную компанию"
+                                            }
+                                        })
+                                    }}
+                                    <label for="inTime" class="darkGray orangeHover easeInOutQuad">ИнТайм</label>
+                                </div>
+                                <div class="row">
+                                    <label for="officeNumber" class="darkGray">Номер отделения *</label>
+                                    {{
+                                        form_widget(form.serviceOffice, {
+                                            'id':   'officeNumber',
+                                            'attr': {
+                                                'class':              'bs easeInOutQuad',
+                                                'placeholder':        "Введите номер отделения",
+                                                'data-rule-required': "true",
+                                                'data-msg-required':  "Пожалуйста, введите номер отделения"
+                                            }
+                                        })
+                                    }}
+                                    {% if errorsArray.serviceOffice is defined %}
+                                        <p class="error">{{ errorsArray.serviceOffice }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div id="regionOverlay" class="popUpOverlay easeInOutQuad cartPopUp">
+                    <span class="close fa fa-times-circle white orangeHover easeInOutQuad"></span>
+                </div>
+                <section id="regionPopUp" class="popUp whiteBg easeInOutQuad cartPopUp">
+                    <h2 class="darkGray smokeBg upperCase">Выбор области</h2>
+                    <div class="regionsArea">
+                        {% for region in regions %}
+                            <input type="radio" name="regionSelect" value="{{ region.title }}" id="{{ region.id }}">
+                            <label for="{{ region.id }}" class="easeInOutQuad bs" data-region="{{ region.title }}">
+                                <figure>
+                                    <img src="{{ asset('bundles/atrophymeat/images/regions/' ~ region.image) }}" alt="crimea">
+                                </figure>
+                                <p class="darkGray upperCase">{{ region.title }}</p>
+                            </label>
+                        {% endfor %}
+                    </div>
+                </section>
+                <div class="deliveryRules inner">
+                    <p class="darkGray bold">Самовывоз</p>
+                    <p class="darkGray">Самовывоз возможен в г. <span class="stableSize orange">Киеве</span> и г. <span class="stableSize orange">Днепропетровске</span>.</p>
+                    <p class="darkGray">Вы можете самостоятельно забрать заказанный вами товар в киевском офисе нашей компании по адресу: ул. Васильковская, 14 (м. "Голосеевская").</p>
+                    <p class="darkGray">В городе Днепропетровске вы можете забрать товар на центральном автовокзале по адресу: ул. Курчатова, 10, по предварительному согласованию с менеджером.</p>
+
+                    <p class="darkGray bold">Доставка</p>
+                    <p class="darkGray">Мы отправляем наградную продукцию во все регионы Украины на склады транспортной компании <span class="stableSize orange">Интайм, Новая Почта, Гюнсел</span>.</p>
+                    <ul>
+                        <li class="darkGray">Доставка наградной продукции осуществляется в любой город Украины до склада транспортной компании или курьером к двери по дополнительному запросу</li>
+                        <li class="darkGray">Заказы оформленные после 12-00 мы отправляем на следующий день</li>
+                        <li class="darkGray">Сроки доставки 1-2 дня в зависимости от отдалённости города и сроков оплаты</li>
+                    </ul>
+
+                    <p class="orange">При получении Вы можете осмотреть товар на соответствие заказанному и оплатить на месте. В случае несоответствия товара или поломки, убедительно просим позвонить вашему менеджеру. Замена товаров бесплатна!</p>
+                </div>
+
+                {{ form_widget(form._token) }}
+
+                <button type="submit" class="easeInOutQuad">Заказать</button>
+            </form>
+        </div>
+        <div id="notify" class="easeInOutQuad bs"></div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/mouseWheel.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/scrollpane.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/validate.min.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/maskPhone.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/cart.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(window).load(function(){
+            $(".regionsArea").jScrollPane();
+        });
+
+        $(function(){
+            header.init();
+            search.init();
+            cart.init();
+        });
+    </script>
+{% endblock %}

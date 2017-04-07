@@ -1,0 +1,8 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/navigationBar.html.twig #}
+<ul>
+    <li class="fa fa-home darkGray"><a href="{{ path('atrophy_meat_homepage') }}" class="easeInOutQuad darkGray orangeHover">Главная</a></li>
+    {% for title, navigationItem in navigationItems %}
+        {% set isActive = ( loop.last ) ? 'active' : '' %}
+        <li class="fa fa-angle-double-right darkGray {{ isActive }}"><a href="{{ navigationItem }}" class="easeInOutQuad darkGray orangeHover">{{ title }}</a></li>
+    {% endfor %}
+</ul>

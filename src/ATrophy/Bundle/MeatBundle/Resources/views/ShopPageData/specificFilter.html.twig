@@ -1,0 +1,14 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/specificFilter.html.twig #}
+{% trans_default_domain 'specifications' %}
+{% for specificationKey, specification in specifications %}
+    <section class="panel bs">
+        <h2 class="darkGray">{{ (specificationKey ~ '.name')|trans }}</h2>
+        {% for parameterKey, parameter in specification %}
+            <input type="checkbox" name="filter[{{ specificationKey }}][]" value="{{ parameter }}" id="{{ specificationKey ~ '_' ~ parameterKey }}"
+                   {% if filter_parameters[specificationKey] is defined and parameter in filter_parameters[specificationKey] %}checked="checked"{% endif %}>
+            <label for="{{ specificationKey ~ '_' ~ parameterKey }}" class="fa fa-square darkGray orangeHover pseudoGray easeInOutQuad {{ ( loop.last ) ? 'mb20' : '' }}">
+                {{ parameter|floatval }} {{ (specificationKey ~ '.measure')|trans }}
+            </label>
+        {% endfor %}
+    </section>
+{% endfor %}

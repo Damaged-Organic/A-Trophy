@@ -1,0 +1,47 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ animations start 									 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+@-webkit-keyframes loader {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(359deg); }
+}
+@-moz-keyframes loader {
+	0% { -moz-transform: rotate(0deg); }
+	100% { -moz-transform: rotate(359deg); }
+}
+@-ms-keyframes loader {
+	0% { -ms-transform: rotate(0deg); }
+	100% { -ms-transform: rotate(359deg); }
+}
+@-o-keyframes loader {
+	0% { -o-transform: rotate(0deg); }
+	100% { -o-transform: rotate(359deg); }
+}
+@keyframes loader {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(359deg); }
+}
+
+@-webkit-keyframes showUp{
+	0% { -webkit-transform: scale(.7); }
+	100% { -webkit-transform: scale(1); }
+}
+@-moz-keyframes showUp{
+	0% { -moz-transform: scale(.7); }
+	100% { -moz-transform: scale(1); }
+}
+@-ms-keyframes showUp{
+	0% { -ms-transform: scale(.7); }
+	100% { -ms-transform: scale(1); }
+}
+@-o-keyframes showUp{
+	0% { -o-transform: scale(.7); }
+	100% { -o-transform: scale(1); }
+}
+@keyframes showUp{
+	0% { transform: scale(.7); }
+	100% { transform: scale(1); }
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ animations end 									 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

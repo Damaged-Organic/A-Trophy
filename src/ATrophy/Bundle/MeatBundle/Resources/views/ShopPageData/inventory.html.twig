@@ -1,0 +1,95 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/inventory.html.twig #}
+{% set controllerPath = path(controllerRoute) %}
+<div class="cellHolder">
+    {% if product.productAddon %}
+        {% if product.productAddon.hasStatuette %}
+            <div class="cell statuette easeInOutQuad"
+                data-path="{{ controllerPath }}"
+                data-info='{"productId": {{ product.id }}, "type": "{{ constant('STATUETTE', product.productAddon) }}"}'>
+                <a href="#" class="darkGray orangeHover easeInOutQuad">установить статуэтку на крышку</a>
+            </div>
+        {% endif %}
+        {% if product.productAddon.hasTopToken %}
+            <div class="cell topToken easeInOutQuad"
+                data-path="{{ controllerPath }}"
+                data-info='{"productId": {{ product.id }}, "type": "{{ constant('TOPTOKEN', product.productAddon) }}"}'>
+                <a href="#" class="darkGray orangeHover easeInOutQuad">установить жетон с держателем</a>
+            </div>
+        {% endif %}
+        {% if product.productAddon.hasRibbon %}
+            <div class="cell ribbon easeInOutQuad"
+                data-path="{{ controllerPath }}"
+                data-info='{"productId": {{ product.id }}, "type": "{{ constant('RIBBON', product.productAddon) }}"}'>
+                <a href="#" class="darkGray orangeHover easeInOutQuad">добавить ленту</a>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+<div id="unitGallery" class="flexy easeInOutQuad {{ ( productImages.0.image is empty ) ? 'noImage' : '' }}">
+    <ul class="flexyHolder">
+        {% if productImages.0.image is not empty %}
+            {% set assetPath = 'bundles/atrophymeat/images/store/products/' ~ product.id ~ '/' %}
+            {% for productImage in productImages %}
+                {% if asset_exists(assetPath ~ productImage.image) %}
+                    <li class="flexySlide" data-path="{{ asset(assetPath ~ productImage.image) }}">
+                        <img src="{{ asset(assetPath ~ productImage.imageSquare) }}" alt="{{ productImage.imageSquare }}">
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <li class="flexySlide"><img src="{{ asset('bundles/atrophymeat/images/placeholders/no_photo_item.jpg') }}" alt="Нет изображения"></li>
+        {% endif %}
+    </ul>
+</div>
+<div class="cellHolder bottom">
+    {% if product.productAddon %}
+        {% if product.productAddon.hasToken %}
+            <div class="cell bottomToken easeInOutQuad"
+                data-path="{{ controllerPath }}"
+                data-info='{"productId": {{ product.id }}, "type": "{{ constant('TOKEN', product.productAddon) }}"}'>
+                <a href="#" class="darkGray orangeHover easeInOutQuad">добавить жетон</a>
+            </div>
+        {% endif %}
+        {% if product.productAddon.hasPlate %}
+            <div class="cell plate easeInOutQuad"
+                data-path="{{ controllerPath }}"
+                data-info='{"productId": {{ product.id }}, "type": "{{ constant('PLATE', product.productAddon) }}"}'>
+                <a href="#" class="darkGray orangeHover easeInOutQuad">добавить шильдик</a>
+            </div>
+        {% endif %}
+        {% if product.productAddon.hasBox %}
+            <div class="cell box easeInOutQuad"
+                data-path="{{ controllerPath }}"
+                data-info='{"productId": {{ product.id }}, "type": "{{ constant('BOX', product.productAddon) }}"}'>
+                <a href="#" class="darkGray orangeHover easeInOutQuad">коробка под медаль</a>
+            </div>
+        {% endif %}
+        {% if product.productAddon.hasEtching %}
+            <div class="cell awardText easeInOutQuad"
+                data-path="{{ controllerPath }}"
+                data-info='{"productId": {{ product.id }}, "type": "{{ constant('ETCHING', product.productAddon) }}"}'>
+                <a href="#" class="darkGray orangeHover easeInOutQuad">нанести гравировку</a>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+<div id="addOnPopUpOverlay" class="popUpOverlay easeInOutQuad">
+    <span class="close fa fa-times-circle white orangeHover easeInOutQuad"></span>
+</div>
+<div id="addOnPopUp" class="popUp whiteBg easeInOutQuad"></div>
+<div id="lightbox">
+    <span class="close fa fa-times"></span>
+    <figure class="viewZone bs"></figure>
+    <div class="previewZone">
+        <ul>
+            {% set assetPath = 'bundles/atrophymeat/images/store/products/' ~ product.id ~ '/' %}
+            {% for productImage in productImages %}
+                {% if asset_exists(assetPath ~ productImage.image) %}
+                    <li data-path="{{ asset(assetPath ~ productImage.image) }}" class="bs">
+                        <img src="{{ asset(assetPath ~ productImage.imageThumb) }}" alt="{{ productImage.imageThumb }}">
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

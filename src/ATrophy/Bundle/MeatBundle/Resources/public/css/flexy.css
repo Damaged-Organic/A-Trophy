@@ -1,0 +1,118 @@
+/********************************
+~ flexy main start~
+*********************************/
+.flexy{
+	width: 100%;
+	max-width: 1000px;
+	position: relative;
+	overflow: hidden;
+}
+.flexy .flexyHolder{
+	overflow: hidden;
+}
+.flexy .flexySlide{
+	display: block;
+	width: 100%;
+	float: left;
+	overflow: hidden;
+}
+.flexy .flexySlide a{
+	display: block;
+	overflow: hidden;
+}
+.flexy .flexySlide img{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+/********************************
+~ flexy main end~
+*********************************/
+
+/********************************
+~ flexy arrows start~
+*********************************/
+.flexy .flexyArrows{
+	display: block;
+	width: 100%;
+	height: 100px;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px;
+	overflow: hidden;
+}
+.flexy .flexyArrows > .arrow{
+	display: block;
+	height: 100px;
+	float: left;
+	margin-left: 10px;
+	font-size: 6.25em;
+	text-align: center;
+	color: #838383;
+	cursor: pointer;
+	-webkit-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+	overflow: hidden;
+}
+.flexy .flexyArrows > .arrow:before{
+	font-family: "FontAwesome";
+	content: "\f104";
+}
+.flexy .flexyArrows > .arrow.right{
+	float: right;
+	margin-right: 10px;
+	margin-left: 0;
+}
+.flexy .flexyArrows > .arrow.right:before{
+	font-family: "FontAwesome";
+	content: "\f105";
+}
+.flexy .flexyArrows > .arrow:hover{
+	color: #cc5200;
+}
+/********************************
+~ flexy arrows end~
+*********************************/
+
+/********************************
+~ flexy points start~
+*********************************/
+.flexy .flexyNavigation{
+	display: block;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 10px;
+	text-align: center;
+	overflow: hidden;
+}
+.flexy .flexyNavigation .point{
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	border-radius: 100%;
+	margin: 5px;
+	background: #838383;
+	cursor: pointer;
+	-webkit-transition: transform .8s ease;
+	-o-transition: transform .8s ease;
+	transition: transform .8s ease;
+	-webkit-transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	-o-transform: scale(0.8);
+	transform: scale(0.8);
+	overflow: hidden;
+}
+.flexy .flexyNavigation .point:hover,
+.flexy .flexyNavigation .point.active{
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	background: #cc5200;
+}
+/********************************
+~ flexy points end~
+*********************************/
+

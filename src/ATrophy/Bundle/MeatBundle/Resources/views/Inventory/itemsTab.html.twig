@@ -1,0 +1,29 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Inventory/itemsTab.html.twig #}
+
+{% trans_default_domain 'specifications' %}
+
+<li>
+    <div class="addOnContent">
+        {% for item in products.items %}
+            <input type="radio" name="addon[{{ products.type }}]" value="{{ item.id }}" id="addon_{{ item.id }}">
+            <label for="addon_{{ item.id }}" class="easeInOutQuad">
+                <figure>
+                    {% set assetFile = products.path ~ item.image %}
+                    {% set assetFile = asset_exists(assetFile) ? assetFile : 'bundles/atrophymeat/images/placeholders/no_photo_addon_thumb.jpg' %}
+                    <img src="{{ asset(assetFile) }}" alt="addon_{{ item.id }}">
+                </figure>
+                <p class="darkGray">{{ ( item.title|length > 55 ) ? item.title[:55] ~ '...' : item.title }}</p>
+                {% if products.type == 'statuette' and (item.height is defined and item.height is not empty) %}
+                    <p class="orange">{{ ('height.name')|trans }}: <span class="darkGray stableSize">{{ item.height }} {{ ('height.measure')|trans }}</span></p>
+                {% elseif (products.type == 'token' or products.type == 'toptoken') and (item.diameter is defined and item.diameter is not empty) %}
+                    <p class="orange">{{ ('diameter.name')|trans }}: <span class="darkGray stableSize">{{ item.diameter }} {{ ('diameter.measure')|trans }}</span></p>
+                {% elseif products.type == 'ribbon' and (item.width is defined and item.width is not empty) %}
+                    <p class="orange">{{ ('width.name')|trans }}: <span class="darkGray stableSize">{{ item.width }} {{ ('width.measure')|trans }}</span></p>
+                {% elseif products.type == 'box' and (item.size is defined and item.size is not empty) %}
+                    <p class="orange">{{ ('size.name')|trans }}: <span class="darkGray stableSize">{{ item.size }} {{ ('size.measure')|trans }}</span></p>
+                {% endif %}
+                <p class="darkGray bold">{{ item.price }} UAH</p>
+            </label>
+        {% endfor %}
+    </div>
+</li>

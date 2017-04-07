@@ -1,0 +1,45 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/footer.html.twig #}
+
+{% trans_default_domain 'footer' %}
+
+<ul>
+    <li>
+        <h2 class="white">{{ 'headline.navigation'|trans }}</h2>
+        <nav>
+            {% for item in directories.items %}
+                {% if item.route != 'atrophy_meat_shop' %}
+                    <a href="{{ path(item.route) }}" class="easeInOutQuad {{ ( directories.current_item == item.route ) ? 'active' : '' }} white orangeHover">
+                        {{ item.title }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </nav>
+    </li>
+    <li>
+        <h2 class="white">{{ 'headline.contacts'|trans }}</h2>
+        {% for address in contacts.address %}
+            <p class="white">{{ address.credential }}</p>
+        {% endfor %}
+        {% for phone in contacts.phone %}
+            <a href="tel:{{ phone.credential|replace({' ': null, '(': null, ')': null, '-': null}) }}" class="phone easeInOutQuad white orangeHover">
+                {{ phone.credential }}
+            </a>
+        {% endfor %}
+        <a href="{{ atrophy_meat_social_group_links_facebook }}" class="icon fa fa-facebook easeInOutQuad white orangeHover" target="_blank"></a>
+        <a href="{{ atrophy_meat_social_group_links_vkontakte }}" class="icon fa fa-vk easeInOutQuad white orangeHover" target="_blank"></a>
+    </li>
+    <li>
+        <h2 class="white">{{ 'headline.shop_info'|trans }}</h2>
+        <p class="white">{{ 'shop_info.company_name'|trans }}</p>
+        <p class="white">{{ 'shop_info.working_hours'|trans }}</p>
+    </li>
+    <li>
+        <h2 class="white">{{ 'headline.developers'|trans }}</h2>
+        <small class="white">{{ 'copyright'|trans({ '%link%': developers_website_link, '%developers%': developers_company_name, '%current_year%': "now"|date('Y') })|raw }}</small>
+        <address>
+            <a href="{{ developers_website_link }}">
+                <img src="{{ asset('bundles/atrophymeat/images/cheers-logo.png') }}" alt="{{ developers_company_name }} logo">
+            </a>
+        </address>
+    </li>
+</ul>

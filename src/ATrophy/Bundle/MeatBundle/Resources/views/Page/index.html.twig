@@ -1,0 +1,164 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/Page/index.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain route %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/intro.css') }}">
+{% endblock %}
+
+{% block body %}
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-49353699-5', 'auto');
+        ga('send', 'pageview');
+
+        //Yandex.Metrika counter
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter27510285 = new Ya.Metrika({id:27510285,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true});
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="//mc.yandex.ru/watch/27510285" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <div id="preloader" class="smokeBg">
+        <div class="svgContainer">
+            <svg viewBox="0 0 512 512">
+                <path fill="none" d="M133.615,67.068c0,173.34,85.574,217.87,97.587,275.906h49.595
+				c12.016-58.036,97.588-102.566,97.588-275.906H133.615z M173.662,95.959h30.05c0.191,64.021,13.428,133.134,46.785,190.765
+				C208.854,238.641,177.286,178.144,173.662,95.959z M331.369,420.518v24.414H180.632v-24.414c39.037,0,49.333-32.754,51.049-54.614
+				c0,0,46.99,0,48.639,0C282.034,387.764,291.206,420.518,331.369,420.518z M402.22,334.05c-24.074-10.884-44.786-3.276-57.578,5.032
+				c12.792-8.309,27.52-25.135,27.373-51.553c-44.484,17.814-39.405,42.839-47.462,57.413c-5.422,9.808-17.29,4.712-17.29,4.712
+				l-3.653,6.042C321.147,364.952,373.42,365.338,402.22,334.05z M444.189,265.004c-23.72,1.66-36.361,18.211-42.946,30.258
+				c6.585-12.047,10.549-33.348-0.852-54.213c-27.633,33.111-12.92,50.769-13.079,65.755c-0.076,7.325-8.409,7.159-8.409,7.159
+				l0.117,6.942C384.41,320.205,433.169,308.604,444.189,265.004z M461.959,198.574c-20.111,7.314-26.776,25.276-29.489,37.332
+				c2.713-12.056,0.692-31.975-14.34-47.203c-15.704,35.497,1.399,47.125,4.977,60.133c1.747,6.356-5.581,10.41-5.581,10.41
+				l4.967,3.063C423.569,261.814,463.455,239.444,461.959,198.574z M458.54,133.467c-15.502,11.431-17.451,28.989-16.728,40.087
+				c-0.724-11.098-6.772-28.137-23.624-37.46c-4.527,34.639,13.196,40.326,19.594,50.645c3.125,5.046,0.398,11.299,0.398,11.299
+				l4.874-0.318c0,0,0.455-2.178,2.902-7.582C450.958,179.076,467.518,167.225,458.54,133.467z M425.896,86.639
+				c0,0-4.694,17.031-0.773,29.871c4.188,13.703,14.985,23.37,14.985,23.37s5.831-14.984,1.698-29.743
+				C437.995,96.528,425.896,86.639,425.896,86.639z M208.391,355.696l-3.653-6.042c0,0-11.868,5.096-17.29-4.712
+				c-8.057-14.574-2.979-39.599-47.462-57.413c-0.146,26.418,14.581,43.244,27.373,51.553c-12.792-8.309-33.504-15.916-57.578-5.032
+				C138.58,365.338,190.853,364.952,208.391,355.696z M132.979,320.905l0.117-6.942c0,0-8.333,0.166-8.409-7.159
+				c-0.159-14.986,14.554-32.644-13.079-65.755c-11.4,20.865-7.437,42.166-0.852,54.213c-6.585-12.047-19.227-28.598-42.946-30.258
+				C78.831,308.604,127.59,320.205,132.979,320.905z M89.508,262.31l4.967-3.063c0,0-7.328-4.054-5.581-10.41
+				c3.577-13.008,20.681-24.636,4.977-60.133c-15.032,15.229-17.053,35.147-14.34,47.203c-2.713-12.056-9.378-30.018-29.489-37.332
+				C48.545,239.444,88.431,261.814,89.508,262.31z M66.043,190.137c2.447,5.404,2.902,7.582,2.902,7.582l4.874,0.318
+				c0,0-2.727-6.253,0.398-11.299c6.397-10.318,24.121-16.006,19.594-50.645c-16.852,9.323-22.9,26.362-23.624,37.46
+				c0.724-11.098-1.226-28.656-16.728-40.087C44.482,167.225,61.042,179.076,66.043,190.137z M70.193,110.137
+				c-4.133,14.759,1.698,29.743,1.698,29.743s10.797-9.667,14.985-23.37c3.921-12.84-0.773-29.871-0.773-29.871
+				S74.005,96.528,70.193,110.137z"/>
+            </svg>
+        </div>
+    </div>
+    <div class="page">
+        <header id="header" class="smokeBg">
+            <nav>
+                <ul>
+                    {% for item in directories.items[:5] %}
+                        {% set isShop = ( item.route == 'atrophy_meat_shop' ) ? true : false %}
+                        <li>
+                            <a href="{{ ( isShop ) ? '#' : path(item.route) }}" class="easeInOutQuad {{ ( directories.current_item == item.route ) ? 'active' : '' }} darkGray orangeHover">
+                                {{ item.title }}
+                            </a>
+                            {% if isShop %}
+                                <ul class="easeInOutQuad whiteBgGlass">
+                                    {% for category in directories.topCategories %}
+                                        <li>
+                                            <a href="{{ path(item.route, { 'category': category.parameter }) }}" class="easeInOutQuad darkGray upperCase stableSize">{{ category.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+
+                    <li><a href="{{ path('atrophy_meat_homepage') }}" class="easeInOutQuad logoLink"><img src="{{ asset('bundles/atrophymeat/images/logo.png') }}" alt="A-Trophy logo"></a></li>
+
+                    {% for item in directories.items[5:] %}
+                        {% set isShop = ( item.route == 'atrophy_meat_shop' ) ? true : false %}
+                        <li>
+                            <a href="{{ ( isShop ) ? '#' : path(item.route) }}" class="easeInOutQuad {{ ( directories.current_item == item.route ) ? 'active' : '' }} darkGray orangeHover">
+                                {{ item.title }}
+                            </a>
+                            {% if isShop %}
+                                <ul class="easeInOutQuad whiteBgGlass">
+                                    {% for category in directories.topCategories %}
+                                        <li>
+                                            <a href="{{ path(item.route, { 'category': category.parameter }) }}" class="easeInOutQuad darkGray upperCase stableSize">{{ category.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </header>
+        {% include 'ATrophyMeatBundle:CommonPageData:adminStrip.html.twig' %}
+        <div class="content intro">
+            <section class="info smokeBgGlass">
+                <h1 class="orange">{{ 'intro.headline'|trans }}</h1>
+                <p class="darkGray">{{ 'intro.tagline'|trans }}</p>
+                <a href="{{ atrophy_meat_social_group_links_facebook }}" class="fa fa-facebook-square ease orange darkGrayHover" target="_blank"></a>
+                <a href="{{ atrophy_meat_social_group_links_vkontakte }}" class="fa fa-vk ease orange darkGrayHover" target="_blank"></a>
+            </section>
+            <div id="accordion">
+                <ul>
+                    {% for introItem in introItems %}
+                        <li class="pseudoSmokeBg">
+                            <figure class="back ease">
+                                <img src="{{ asset('bundles/atrophymeat/images/intro/' ~ introItem.imageOriginal) }}" alt="{{ introItem.imageOriginal }}">
+                            </figure>
+                            <figure class="front ease">
+                                <img src="{{ asset('bundles/atrophymeat/images/intro/' ~ introItem.imageFiltered) }}" alt="{{ introItem.imageFiltered }}">
+                            </figure>
+                            <div class="lane ease smokeBgGlass pseudoOrangeBgGlass"></div>
+                            <div class="laneInfo ease">
+                                <a href="{{ path('atrophy_meat_shop', { 'category': introItem.categorySubdirectory }) }}">
+                                    <h2 class="ease darkGray">{{ introItem.title }}</h2>
+                                    <p class="ease darkGray">{{ introItem.text }}</p>
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/preloader.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        preloader.init();
+    </script>
+{% endblock %}

@@ -1,0 +1,107 @@
+/*====================================
+**	addOnsZone start 							**
+====================================*/
+.addOnsZone #addOns{
+	margin: 20px 0 0;
+}
+.addOnsZone .wrap{
+	width: 49%;
+    height: 310px;
+	float: left;
+	margin: 11px 0;
+}
+.addOnsZone .wrap:nth-child(even){
+	margin-left: 2%;
+}
+
+.addOnsZone .wrap label{
+	margin: 20px 4% 0;
+}
+.addOnsZone .wrap input[type=text]{
+	width: 92%;
+	margin: 0 4%;
+}
+
+.addOnsZone .fieldsArea{
+	width: 92%;
+	margin: 0 4% 0px;
+}
+
+.addOnsZone .fieldsArea .photo{
+	width: 30%;
+	margin: 20px 0;
+	float: left;
+}
+.addOnsZone .fieldsArea .photo input[type=file],
+.addOnsZone .fieldsArea .photo input[type=file]+label{
+	margin: 0;
+}
+.addOnsZone .fieldsArea .row{
+	width: 70%;
+	float: left;
+}
+
+.addOnsZone .wrap .fieldsArea label{
+	margin: 0 0 0 6%;
+}
+.addOnsZone .wrap .fieldsArea label:first-child{
+	margin-top: 20px;
+}
+.addOnsZone .wrap .fieldsArea input[type=text]{
+	width: 94%;
+	margin: 0 0 10px 6%;
+}
+
+.addOnsZone button[type=submit]{
+	clear: left;
+	margin: 29px auto 20px;
+	
+}
+.addOnsZone .addMore{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.addOnsZone .addMore a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 8em;
+    text-align: center;
+    line-height: 310px;
+    color: #838383;
+    background: rgba(0, 0, 0, 0);
+    transition: all .5s ease;
+    text-shadow: 0 0 25px #222;
+    position: relative;
+    overflow: hidden;
+}
+.addOnsZone .addMore a:after{
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    transition: all .5s ease;
+    border-radius: 5px;
+    opacity: 0;
+    overflow: hidden;
+}
+.addOnsZone .addMore a:before{
+    color: #838383;
+    transition: all .5s ease;
+    text-shadow: 0 0 5px #222;
+}
+.addOnsZone .addMore a:hover:before{
+    color: #f7f7f7;
+    text-shadow: 0 0 5px #222;
+}
+.addOnsZone .addMore a:hover:after{
+    opacity: 0.2;
+}
+/*====================================
+**	addOnsZone end 							**
+====================================*/

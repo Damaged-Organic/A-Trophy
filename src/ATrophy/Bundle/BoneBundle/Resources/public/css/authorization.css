@@ -1,0 +1,60 @@
+/*====================================
+**	authorization start 							**
+====================================*/
+.authorization{
+	width: 30%;
+	margin: 100px auto 0;
+	text-align: center;
+	background: #fff;
+	border: 1px solid #d7d7d7;
+	box-sizing: border-box;
+	background-image: -webkit-radial-gradient(circle 50% 50%, #fff, #f7f7f7); 
+	background-image: -moz-radial-gradient(circle 50% 50%, #fff, #f7f7f7); 
+	background-image: -ms-radial-gradient(circle 50% 50%, #fff, #f7f7f7); 
+	background-image: -o-radial-gradient(circle 50% 50%, #fff, #f7f7f7); 
+	background-image: radial-gradient(circle 50% 50%, #fff, #f7f7f7);
+	box-shadow: 0 0 30px #333;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.authorization h1{
+	text-transform: uppercase;
+	text-align: center;
+	margin-top: 30px;
+	color: #363636;
+}
+.authorization form{
+	margin: 30px auto 40px;
+}
+.authorization form p{
+	padding: 20px 45px 10px;
+}
+.authorization label{
+	width: 80%;
+	font-size: 1em;
+	position: relative;
+}
+.authorization label:before{
+	position: absolute;
+	top: 14.5px;
+	left: 15px;
+	font-family: "FontAwesome";
+	content: "\f007";
+}
+.authorization label[for=password]:before{
+	content: "\f023";
+}
+.authorization input{
+	margin: 0;
+	font-size: 0.875em;
+	text-indent: 35px;
+	transition: all .5s ease;
+}
+.authorization button{
+	width: 80%;
+	margin-top: 20px;
+	text-transform: uppercase;
+}
+/*====================================
+**	authorization end 							**
+====================================*/

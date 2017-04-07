@@ -1,0 +1,22 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/menu.html.twig #}
+<nav class="whiteBgGlass">
+    <ul>
+        {% for item in directories.items %}
+            <li>
+                {% set isShop = ( item.route == 'atrophy_meat_shop' ) ? true : false %}
+                <a href="{{ ( isShop ) ? '#' : path(item.route) }}" class="easeInOutQuad {{ ( directories.current_item == item.route ) ? 'active' : '' }} darkGray orangeHover">
+                    {{ item.title }}
+                </a>
+                {% if isShop %}
+                    <ul class="easeInOutQuad whiteBgGlass">
+                        {% for category in directories.topCategories %}
+                            <li>
+                                <a href="{{ path(item.route, { 'category': category.parameter }) }}" class="easeInOutQuad darkGray upperCase stableSize {{ ( category.parameter == category_parameter ) ? 'active' : '' }}">{{ category.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

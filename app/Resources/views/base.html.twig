@@ -1,0 +1,17 @@
+{# app/Resources/views/base.html.twig #}
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+    {% block head %}{% endblock %}
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+    {% block javascripts_init %}{% endblock %}
+    <script src="{{ asset('bundles/atrophymeat/js/brasst_api.js') }}"></script>
+    <script>
+        var brasst = new Brasst({ locale: "{{ app.request.locale }}" });
+    </script>
+</body>
+</html>

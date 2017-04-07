@@ -1,0 +1,59 @@
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/promotionsEdit.html.twig #}
+{% extends 'ATrophyBoneBundle::layout.html.twig' %}
+
+{% set title = "Редактирование акционных предложений" %}
+
+{% block head %}
+    <title>{{ title }} - DEM</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="{{ asset('bundles/atrophybone/images/favicon.png') }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/promo.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page">
+        {% include 'ATrophyBoneBundle:Common:header.html.twig' with { 'title': title } only %}
+        <section class="content saleZone">
+            <form action="{{ path('atrophy_bone_promo', { 'action': "update" }) }}" method="POST" id="promo" autocomplete="off" enctype="multipart/form-data">
+
+                <input type="file" name="files[]" value="" multiple id="promoPhotos">
+                <label for="promoPhotos">Выбрать изображения</label>
+
+            </form>
+            {% if promotions is not empty %}
+                <div class="wrap circleGradient">
+                    {% for promotion in promotions %}
+                        <div class="photo">
+                            <figure>
+                                <img src="{{ asset('bundles/atrophymeat/images/slider/' ~ promotion.image) }}" alt="{{ promotion.image }}">
+                            </figure>
+                            <a href="{{ path('atrophy_bone_promo', { 'action': "delete", 'promoId': promotion.id }) }}" class="delete confirm fa fa-times"></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty">Не загружено ни одного акционного изображения</p>
+            {% endif %}
+            <button type="submit" form="promo">Загрузить</button>
+        </section>
+        <div class="confirmArea">
+            <span class="choose fa fa-trash-o" data-choice="true"></span>
+            <span class="choose fa fa-times-circle-o" data-choice="false"></span>
+        </div>
+    </div>
+    {% include 'ATrophyBoneBundle:Common:footer.html.twig' %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{{ asset('bundles/atrophybone/js/lib/confirmation.js') }}"></script>
+    <script>
+        $(function() {
+            confirm.init();
+        });
+    </script>
+{% endblock %}

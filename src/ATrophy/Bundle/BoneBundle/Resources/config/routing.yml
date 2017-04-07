@@ -1,0 +1,52 @@
+login:
+    pattern:   /login
+    defaults:
+        _controller: ATrophyBoneBundle:SecurePage:login
+login_check:
+    pattern:   /dem/login_check
+logout:
+    pattern:   /dem/logout
+
+atrophy_bone_homepage:
+    path:     /dem
+    defaults:
+        _controller: ATrophyBoneBundle:SecurePage:index
+    methods:  [GET]
+
+atrophy_bone_product:
+    path:     /dem/products/{productId}/{action}
+    defaults:
+        { _controller: ATrophyBoneBundle:SecurePage:product, productId: null, action: null }
+    methods:  [GET, POST]
+    requirements:
+        productId: \d+
+
+atrophy_bone_addon:
+    path:     /dem/addons/{addonType}/{action}/{addonId}
+    defaults:
+        { _controller: ATrophyBoneBundle:SecurePage:addon, action: null, addonId: null }
+    methods:  [GET, POST]
+
+atrophy_bone_news:
+    path:     /dem/news/{newsId}/{action}
+    defaults:
+        { _controller: ATrophyBoneBundle:SecurePage:news, newsId: null, action: null }
+    methods:  [GET, POST]
+    requirements:
+        newsId: \d+
+
+atrophy_bone_faq:
+    path:     /dem/faq/{faqId}/{action}
+    defaults:
+        { _controller: ATrophyBoneBundle:SecurePage:faq, faqId: null, action: null }
+    methods:  [GET, POST]
+    requirements:
+        faqId: \d+
+
+atrophy_bone_promo:
+    path:     /dem/promo/{action}/{promoId}
+    defaults:
+        { _controller: ATrophyBoneBundle:SecurePage:promo, action: null, promoId: null }
+    methods:  [GET, POST]
+    requirements:
+        promoId: \d+

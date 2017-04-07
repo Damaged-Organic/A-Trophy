@@ -1,0 +1,17 @@
+# ATrophy/Bundle/MeatBundle/Resources/translations/atrophy_meat_news_article.ru.yml
+headline: Новости
+
+latest_headline: Последние новости
+
+social:
+    share: Поделиться ссылкой
+    in:
+        facebook:   на Facebook
+        twitter:    в Twitter
+        vkontakte:  во Вконтакте
+        googleplus: в Google+
+    name:
+        facebook:   Facebook
+        twitter:    Twitter
+        vkontakte:  Вконтакте
+        googleplus: Google+

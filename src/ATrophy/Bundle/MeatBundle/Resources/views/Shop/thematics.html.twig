@@ -1,0 +1,67 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/Shop/thematics.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain route %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/jquery-ui.theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/scrollpane.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/store.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content extraP clear store">
+    <div class="inner">
+        <div class="breadcrumbs">
+            {% render controller('ATrophyMeatBundle:CommonPageData:navigationBar') %}
+        </div>
+        <div class="storeInfoPanel clear">
+            {% include 'ATrophyMeatBundle:ShopPageData:recordsPerPage.html.twig' with { "recordsPerPage": recordsPerPage } only %}
+            {% include 'ATrophyMeatBundle:ShopPageData:pageInformation.html.twig' with { "route": route, "pageInformation": pageInformation } only %}
+        </div>
+        <aside id="filters" class="smokeBg clear">
+            <div id="clearFilter" class="whiteBg easeInOutQuad {{ ( hasFilters ) ? 'isActive' : '' }}">
+                <a href="{{ path(route, { 'clear': 'filters' }) }}" class="darkGray smokeBg upperCase whiteHover orangeBgHover easeInOutQuad">Сбросить фильтрацию</a>
+            </div>
+            {% render controller('ATrophyMeatBundle:ShopPageData:thematicFilter') %}
+            <form action="{{ path('atrophy_shop_filter') }}" id="filterForm" method="POST">
+                {% render controller('ATrophyMeatBundle:ShopPageData:sortingFilter') %}
+                {% render controller('ATrophyMeatBundle:ShopPageData:commonFilter') %}
+            </form>
+        </aside>
+        <div id="goodsGrid" class="clear">
+            {% render controller('ATrophyMeatBundle:ShopPageData:catalogGrid', { 'products': products }) %}
+        </div>
+        <div class="navigation">
+            {% render controller('ATrophyMeatBundle:CommonPageData:paginationBar') %}
+        </div>
+        <div id="notify" class="easeInOutQuad bs"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/mouseWheel.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/scrollpane.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/filters.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(window).load(function(){
+            $(".themeBox").jScrollPane();
+        });
+        $(function(){
+            header.init();
+            search.init();
+            filters.init();
+        });
+    </script>
+{% endblock %}

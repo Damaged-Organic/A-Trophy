@@ -1,0 +1,5 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/widgetCart.html.twig #}
+<a href="{{ path('atrophy_meat_cart') }}" class="orangeHover">
+    <span class="icon fa fa-shopping-cart gray orangeHover easeInOutQuad"></span>
+    <span class="count orange">{{ ( cartItemsNumber ) ? cartItemsNumber : '' }}</span>
+</a>

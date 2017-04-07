@@ -1,0 +1,19 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/thematicFilter.html.twig #}
+<section class="panel themes bs">
+    <h2 class="darkGray">Тематики</h2>
+    <ul class="themeBox">
+        {% set thematic_path = path('atrophy_shop_filter') %}
+        {% set isPromo = ( allowPromotionFilter ) ? null : 'yes' %}
+        {% for thematic in thematics %}
+            <li>
+                <a href="#{{ thematic.title }}" class="fa fa-angle-right darkGray orangeHover easeInOutQuad filterButton"
+                   {% if isPromo %}
+                       data-info='{ "filter": { "is_promo": "{{ isPromo }}" }, "thematic": {{ thematic.id }} }'
+                   {% else %}
+                       data-info='{ "thematic": {{ thematic.id }} }'
+                   {% endif %}
+                   data-path="{{ thematic_path }}">{{ thematic.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

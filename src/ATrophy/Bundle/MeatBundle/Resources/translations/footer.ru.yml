@@ -1,0 +1,14 @@
+# ATrophy/Bundle/MeatBundle/Resources/translations/footer.ru.yml
+headline:
+    navigation: Навигация
+    contacts:   Контактная информация
+    shop_info:  Информация о магазине
+    developers: Разработчики
+
+shop_info:
+    company_name:  Интернет-магазин наградной продукции «A-Trophy»
+    working_hours: График работы выставочного центра: ежедневно, с 9:00 до 19:00
+
+copyright: >
+  Web Production by <a href="%link%" class="stableSize white easeInOutQuad orangeHover">%developers%</a>, 2014 - %current_year%.
+  <p>Все права сохранены. Использование материалов сайта без согласия его авторов запрещено.</p>

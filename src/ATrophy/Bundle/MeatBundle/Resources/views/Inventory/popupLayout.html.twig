@@ -1,0 +1,18 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Inventory/popupLayout.html.twig #}
+<div class="tabs bs">
+    <div class="labelsWrap lightGrayBg">
+        {% if popupBlocks.tabs %}
+            {% include 'ATrophyMeatBundle:Inventory:tabsMenu.html.twig' with { 'tabs': popupBlocks.tabs } only %}
+        {% endif %}
+    </div>
+    <form action="{{ path('atrophy_inventory_add', { 'productId': productId }) }}" id="addOnForm" method="POST" enctype="multipart/form-data">
+        <ul>
+            {% if popupBlocks.products %}
+                {% include 'ATrophyMeatBundle:Inventory:itemsTab.html.twig' with { 'products': popupBlocks.products } only %}
+            {% endif %}
+            {% if popupBlocks.etchings %}
+                {% include 'ATrophyMeatBundle:Inventory:etchingsTab.html.twig' with { 'etchings': popupBlocks.etchings, 'addonType': addonType } only %}
+            {% endif %}
+        </ul>
+    </form>
+</div>

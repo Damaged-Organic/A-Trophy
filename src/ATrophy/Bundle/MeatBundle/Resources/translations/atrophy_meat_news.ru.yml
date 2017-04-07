@@ -1,0 +1,7 @@
+# ATrophy/Bundle/MeatBundle/Resources/translations/atrophy_meat_news.ru.yml
+headline: Новости
+
+article:
+    detailed: детальнее
+
+empty: К сожалению, на данный момент новостей нет

@@ -1,0 +1,17 @@
+/*====================================
+**	faq start									**
+====================================*/
+.faqZone .wrap{
+	padding: 10px 0 20px;
+}
+.faqZone .wrap label{
+	font-size: 1em;
+	margin: 20px 0 5px 5.5%;
+}
+.faqZone .wrap textarea{
+	width: 90%;
+	margin: 0 5% 0px;
+}
+/*====================================
+**	faq end 									**
+====================================*/

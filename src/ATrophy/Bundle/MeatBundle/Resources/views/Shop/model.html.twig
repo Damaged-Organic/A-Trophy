@@ -1,0 +1,192 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Shop/model.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain 'specifications' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/jquery-ui.theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/scrollpane.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/lightbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/store.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content extraP clear store unit">
+        <div class="inner">
+            <div class="breadcrumbs">
+                {% render controller('ATrophyMeatBundle:CommonPageData:navigationBar') %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('atrophy_bone_product', { 'productId': product.id }) }}" class="editable fa fa-pencil-square" target="_blank"></a>
+                {% endif %}
+            </div>
+            <section class="itemWrapper clear mb20">
+                <div id="inventory" class="bs borderLightGray {% if product.productAddon is not empty and product.productAddon.hasAnyAddons %}isActive{% endif %}">
+                    {% render controller('ATrophyMeatBundle:ShopPageData:inventory', { 'product': product }) %}
+                </div>
+                <article class="item">
+                     <div class="unitMainInfo">
+                        <header>
+                            <h1 class="darkGray">{{ product.title }}</h1>
+                            {% if product.subcategory %}
+                                <p class="orange">Категория: <span class="stableSize darkGray">{{ product.subcategory.title }}</span></p>
+                            {% endif %}
+                            <p class="orange">Тематика: <span class="stableSize darkGray">{{ product.thematic.title }}</span></p>
+                        </header>
+                        <div class="ratingWrapper">
+                            <div class="rating clear mb20 clickable" data-path="{{ path('atrophy_inventory_rate') }}">
+                            {% render controller('ATrophyMeatBundle:ShopPageData:rating', { 'productId': product.id, 'ratingVotes': product.ratingVotes, 'ratingScore': product.ratingScore }) %}
+                            </div>
+                        </div>
+                    </div>
+                    <section class="unitType clear mb20">
+                        <h2 class="darkGray smokeBg">Выберите модель с желаемыми характеристиками</h2>
+                        <form action="{{ path('atrophy_meat_cart') }}" id="addToCart" method="POST">
+                            {% set kitStock = true %}
+                            {% set totalPrice = 0 %}
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        <p class="darkGray">Артикул</p>
+                                    </th>
+                                    <th>
+                                        <p class="darkGray">Характеристики</p>
+                                    </th>
+                                    <th>
+                                        <p class="darkGray">Наличие</p>
+                                    </th>
+                                    <th>
+                                        <p class="darkGray">Цена</p>
+                                    </th>
+                                </tr>
+                                {% for productItem in product.productItem %}
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="items[{{ productItem.id }}]" value="{{ ( productItem.pricePromo ) ? productItem.pricePromo : productItem.price }}" id="{{ productItem.id }}" autocomplete="off">
+                                            <label for="{{ productItem.id }}" class="gray orangeHover easeInOutQuad"></label>
+                                        </td>
+                                        <td>
+                                            <p class="orange">{{ ( productItem.article ) ? productItem.article : "нет артикула" }}</p>
+                                        </td>
+                                        <td>
+                                            {% if productItem.ItemSpecification.isSpecificationEmpty %}
+                                                {% for specificationKey, specification in productItem.ItemSpecification.getFormattedProperties %}
+                                                    <p class="orange">{{ (specificationKey ~ '.name')|trans }}: <span class="stableSize darkGray">{{ specification|floatval }} {{ (specificationKey ~ '.measure')|trans }}</span></p>
+                                                {% endfor %}
+                                            {% else %}
+                                                <p class="orange">характеристики не указаны</p>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if productItem.stock == false %}
+                                                {% set kitStock = false %}
+                                            {% endif %}
+                                            <span class="gray">
+                                                {% if is_granted('ROLE_ADMIN') %}
+                                                    {{ ( product.isVisible and productItem.article ) ? 'виден, ' : 'скрыт, ' }}
+                                                {% endif %}
+                                                {{ ( productItem.stock ) ? 'в наличии' : 'нет в наличии' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {% if productItem.pricePromo %}
+                                                {% set totalPrice = totalPrice + productItem.pricePromo %}
+                                                <p class="orange price">{{ productItem.pricePromo }} <span class="stableSize darkGray">UAH</span>
+                                                    <sup class="stableSize darkGray">{{ productItem.price }} UAH</sup>
+                                                </p>
+                                            {% elseif productItem.price %}
+                                                {% set totalPrice = totalPrice + productItem.price %}
+                                                <p class="orange price">{{ productItem.price }} <span class="stableSize darkGray">UAH</span></p>
+                                            {% else %}
+                                                <p class="orange price">цена не указана</p>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% if product.kitPrice and totalPrice > 0 %}
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="items[kit]" value="{{ product.kitPrice }}" id="kit">
+                                            <label for="kit" class="gray orangeHover easeInOutQuad"></label>
+                                        </td>
+                                        <td>
+                                            <p class="orange">Комплект</p>
+                                        </td>
+                                        <td>
+                                            <p class="orange">Приобрести комплект</p>
+                                            <p class="darkGray">из {{ product.productItem|length }} моделей</p>
+                                        </td>
+                                        <td>
+                                            <span class="gray">
+                                                {% if is_granted('ROLE_ADMIN') %}
+                                                    {{ ( product.isVisible ) ? 'виден, ' : 'скрыт, ' }}
+                                                {% endif %}
+                                                {{ ( kitStock ) ? 'в наличии' : 'нет в наличии' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <p class="orange price">{{ product.kitPrice }} <span class="stableSize darkGray">UAH</span></p>
+                                            <p class="darkGray">скидка <span class="stableSize orange">-{{ ((1 - (product.kitPrice/totalPrice)) * 100)|round(0, 'ceil') }}%</span></p>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </table>
+                            <input type="hidden" name="productId" value="{{ product.id }}">
+                        </form>
+                    </section>
+                </article>
+            </section>
+        </div>
+        <div id="tools" class="smokeBg bs">
+            <div class="inner">
+                {% if product.productAddon is not empty and product.productAddon.hasAnyAddons %}
+                    <a href="#" id="toggleInventory" class="white easeInOutQuad bs" data-open="Показать дополнения" data-close="Скрыть дополнения">Скрыть дополнения</a>
+                {% endif %}
+                <button type="submit" form="addToCart" class="white easeInOutQuad bs" disabled>
+                    <span class="fa fa-shopping-cart stableSize whiteBg gray"></span>
+                    добавить в корзину
+                </button>
+                <span id="unitCost" class="darkGray" data-default-price="{{ product.CurrentPrice }} UAH">от <span class="stableSize orange">{{ product.CurrentPrice }} UAH</span></span>
+                <ul id="addonsCost"></ul>
+            </div>
+        </div>
+        <div id="notify" class="easeInOutQuad bs"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/mouseWheel.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/scrollpane.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/lightbox.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/inventory.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/addToCart.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/rating.js') }}"></script>
+{% endblock %}
+
+{% block footerHack %}unit bs{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(window).load(function(){
+            var unitGallery = $("#unitGallery");
+            unitGallery.LightBox();
+        });
+
+        $(function(){
+
+            header.init();
+            search.init();
+
+            inventory.init();
+            addToCart.init();
+            rating.init();
+        });
+    </script>
+{% endblock %}

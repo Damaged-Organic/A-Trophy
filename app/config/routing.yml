@@ -1,0 +1,7 @@
+a_trophy_bone:
+    resource: "@ATrophyBoneBundle/Resources/config/routing.yml"
+    prefix:   /
+
+a_trophy_meat:
+    resource: "@ATrophyMeatBundle/Resources/config/routing.yml"
+    prefix:   /

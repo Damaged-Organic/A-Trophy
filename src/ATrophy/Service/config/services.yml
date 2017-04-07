@@ -1,0 +1,97 @@
+# ATrophy/Service/config/services.yml
+parameters:
+    atrophy.form.type.tel.class:      ATrophy\Bundle\MeatBundle\Form\Type\TelType
+
+    atrophy.data_transform.class:     ATrophy\Service\DataTransform
+
+    atrophy.common_page_data.class:    ATrophy\Service\CommonPageData
+    atrophy.meat_page_data.class:      ATrophy\Service\MeatPageData
+    atrophy.shop_page_data.class:      ATrophy\Service\ShopPageData
+    atrophy.inventory_page_data.class: ATrophy\Service\InventoryPageData
+
+    atrophy.cart.class:                ATrophy\Service\Cart
+    atrophy.order.class:               ATrophy\Service\Order
+
+    atrophy.pagination_bar.class:      ATrophy\Service\PaginationBar
+    atrophy.filter_parameters.class:   ATrophy\Service\FilterParameters
+    atrophy.file_upload.class:         ATrophy\Service\FileUpload
+
+    atrophy.page_init_listener.class: ATrophy\Bundle\MeatBundle\EventListener\PageInitListener
+
+    CRUD.class:          ATrophy\Service\CRUD\CRUD
+    CRUDProduct.class:   ATrophy\Service\CRUD\CRUDProduct
+    CRUDAddon.class:     ATrophy\Service\CRUD\CRUDAddon
+    CRUDNews.class:      ATrophy\Service\CRUD\CRUDNews
+    CRUDFaq.class:       ATrophy\Service\CRUD\CRUDFaq
+    CRUDPromotion.class: ATrophy\Service\CRUD\CRUDPromotion
+
+services:
+    atrophy.form.type.tel:
+        class:     %atrophy.form.type.tel.class%
+        tags:
+            - { name: form.type, alias: tel }
+
+    atrophy.data_transform:
+        class:     %atrophy.data_transform.class%
+
+    atrophy.common_page_data:
+        class:     %atrophy.common_page_data.class%
+        arguments: [ @doctrine.orm.entity_manager, @atrophy.data_transform ]
+
+    atrophy.meat_page_data:
+        class:     %atrophy.meat_page_data.class%
+        arguments: [ @doctrine.orm.entity_manager ]
+
+    atrophy.shop_page_data:
+        class:     %atrophy.shop_page_data.class%
+        arguments: [ @doctrine.orm.entity_manager, @session, @atrophy.pagination_bar, @atrophy.data_transform, @security.context ]
+
+    atrophy.inventory_page_data:
+        class:     %atrophy.inventory_page_data.class%
+        arguments: [ @doctrine.orm.entity_manager, @session, @atrophy.data_transform, @atrophy.file_upload, @security.context ]
+
+    atrophy.cart:
+        class:     %atrophy.cart.class%
+        arguments: [ @doctrine.orm.entity_manager, @session, @atrophy.inventory_page_data]
+
+    atrophy.order:
+        class:     %atrophy.order.class%
+        arguments: [ @doctrine.orm.entity_manager, @session, @templating, @atrophy.cart, @atrophy.shop_page_data, @atrophy.file_upload, @mailer, %atrophy_meat.emails.no-reply%, %atrophy_meat.emails.office%, %atrophy_meat.emails.personal%, %atrophy_meat.emails.company% ]
+
+    atrophy.pagination_bar:
+        class:     %atrophy.pagination_bar.class%
+
+    atrophy.filter_parameters:
+        class:     %atrophy.filter_parameters.class%
+        scope:     request
+        arguments: [ @request, @session, @atrophy.shop_page_data ]
+
+    atrophy.file_upload:
+        class:     %atrophy.file_upload.class%
+        arguments: [ @session ]
+
+    CRUD:
+        class:     %CRUD.class%
+        arguments: [ @doctrine.orm.entity_manager, @CRUDProduct, @CRUDAddon, @CRUDNews, @CRUDFaq, @CRUDPromotion, @atrophy.file_upload ]
+
+    CRUDProduct:
+        class:     %CRUDProduct.class%
+
+    CRUDAddon:
+        class:     %CRUDAddon.class%
+
+    CRUDNews:
+        class:     %CRUDNews.class%
+
+    CRUDFaq:
+        class:     %CRUDFaq.class%
+
+    CRUDPromotion:
+        class:     %CRUDPromotion.class%
+
+    atrophy.page_init_listener:
+        class:     %atrophy.page_init_listener.class%
+        scope:     request
+        arguments: [ @request, @session, @atrophy.common_page_data, @atrophy.filter_parameters ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

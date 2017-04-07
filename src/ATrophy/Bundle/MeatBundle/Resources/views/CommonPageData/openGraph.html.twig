@@ -1,0 +1,6 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/openGraph.html.twig #}
+<meta property="og:title" content="{{ openGraph.title }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ currentUrl }}">
+<meta property="og:image" content="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/atrophymeat/images/' ~ image) }}">
+<meta property="og:description" content="{{ openGraph.description }}">

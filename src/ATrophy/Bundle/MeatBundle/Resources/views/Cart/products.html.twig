@@ -1,0 +1,159 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Cart/products.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain 'specifications' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/jquery-ui.theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/scrollpane.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/cart.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content extraP cart clear">
+        <section class="inner">
+            {% if cartItems is not empty %}
+                <h1 class="underBorder upperCase darkGray">Корзина: список ваших товаров</h1>
+                <table class="listOfGoods clear">
+                    <tr>
+                        <th>Фото</th>
+                        <th>Характеристики</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Сумма</th>
+                        <th>Убрать</th>
+                    </tr>
+                    {% set priceTotal = 0.00 %}
+                    {% for itemKey, cartItem in cartItems %}
+                        <tr>
+                            <td>
+                                <figure>
+                                    {% if cartItem.item == 'kit' %}
+                                        {% set itemImage = cartProducts[cartItem.productId]['imageThumb'] %}
+                                    {% else %}
+                                        {% set itemImage = cartProducts[cartItem.productId]['productItem'][cartItem.item]['itemImage'] %}
+                                    {% endif %}
+                                    {% set assetFile = 'bundles/atrophymeat/images/store/products/' ~ cartItem.productId ~ '/' ~ itemImage %}
+                                    {% set assetFile = asset_exists(assetFile) ? assetFile : 'bundles/atrophymeat/images/placeholders/no_photo_item_thumb.jpg' %}
+                                    <img src="{{ asset(assetFile) }}" alt="{{ cartItem.productId }}">
+                                </figure>
+                            </td>
+                            <td>
+                                {% set itemTitle = cartProducts[cartItem.productId]['title'] %}
+                                <h2 class="darkGray">{{ itemTitle }}</h2>
+                                {% if cartItem.item == 'kit' %}
+                                    {% set itemsNumber = cartProducts[cartItem.productId]['productItem']|length %}
+                                    <p class="orange">Комплект</p>
+                                    <p class="darkGray">из {{ itemsNumber }} моделей</p>
+                                {% else %}
+                                    {% set itemSpecifications = cartProducts[cartItem.productId]['productItem'][cartItem.item]['itemSpecification'] %}
+                                    {% for specificationKey, specification in itemSpecifications %}
+                                        <p class="orange">{{ (specificationKey ~ '.name')|trans }}: <span class="stableSize darkGray">{{ specification|floatval }} {{ (specificationKey ~ '.measure')|trans }}</span></p>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if cartItem.addons %}
+                                    <a href="#" class="toCartAddon easeInOutQuad bs" data-hover="дополнения" data-list="addOnList_{{ itemKey }}">дополнения</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if cartItem.item == 'kit' %}
+                                    {% set priceCurrent = cartProducts[cartItem.productId]['kitPrice'] %}
+                                {% else %}
+                                    {% set price = cartProducts[cartItem.productId]['productItem'][cartItem.item]['price'] %}
+                                    {% set pricePromo = cartProducts[cartItem.productId]['productItem'][cartItem.item]['pricePromo'] %}
+                                    {% set priceCurrent = ( pricePromo ) ? pricePromo : price %}
+                                {% endif %}
+                                <p class="priceLabel darkGray">{{ (priceCurrent + cartItem.addonsPrice)|number_format(2) }} UAH</p>
+                            </td>
+                            <td>
+                                <a href="#" class="actionButton fa fa-minus white grayBg orangeBgHover easeInOutQuad"
+                                    data-path="{{ path('atrophy_meat_cart_quantity') }}"
+                                    data-info='{"cartItemId": {{ itemKey }}, "action": "decrease"}'></a>
+                                <label class="quantity" data-path="{{ path('atrophy_meat_cart_quantity') }}" data-info='{"cartItemId": {{ itemKey }}, "action": "set", "quantity": {{ cartItem.quantity }}}' autocomplete="off">
+                                    <input type="text" name="quantity" value="{{ cartItem.quantity }}" id="quantity">
+                                </label>
+                                <a href="#" class="actionButton fa fa-plus white grayBg orangeBgHover easeInOutQuad"
+                                    data-path="{{ path('atrophy_meat_cart_quantity') }}"
+                                    data-info='{"cartItemId": {{ itemKey }}, "action": "increase"}'></a>
+                            </td>
+                            <td>
+                                {% set priceSubtotal = (priceCurrent + cartItem.addonsPrice) * cartItem.quantity %}
+                                {% set priceTotal = priceTotal + priceSubtotal %}
+                                <p class="priceLabel summ orange">{{ priceSubtotal|number_format(2) }} UAH</p>
+                            </td>
+                            <td>
+                                <a href="#" class="actionButton remove fa fa-remove gray orangeHover easeInOutQuad"
+                                    data-path="{{ path('atrophy_meat_cart_delete_item') }}"
+                                    data-info='{"cartItemId": {{ itemKey }}, "action": "remove"}'></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <p id="totalPrice" class="darkGray clear">ИТОГО <span class="stableSize orange">{{ priceTotal|number_format(2) }} UAH</span></p>
+                <div class="button">
+                    <a href="{{ path('atrophy_meat_cart_checkout') }}" class="white upperCase easeInOutQuad">Оформить</a>
+                </div>
+                {% if backLink %}
+                    <div class="button">
+                        <a href="{{ backLink }}" class="darkGray upperCase smokeBg easeInOutQuad">Продолжить покупки</a>
+                    </div>
+                {% endif %}
+            {% else %}
+                <p class='orange cartEmpty'>На данный момент в вашей корзине пусто</p>
+            {% endif %}
+        </section>
+    </div>
+    <div id="notify" class="easeInOutQuad bs"></div>
+    <div id="cartAddOnOverlay" class="popUpOverlay easeInOutQuad cartPopUp">
+        <span class="close fa fa-times-circle white orangeHover easeInOutQuad"></span>
+    </div>
+    <div id="cartAddOnPopUp" class="popUp whiteBg easeInOutQuad cartPopUp">
+        <ul>
+            {% for itemKey, cartItem in cartItems %}
+                <li id="addOnList_{{ itemKey }}">
+                    {% for addonName, addon in cartItem.addons %}
+                        <div class="cartAddOn">
+                            <figure>
+                                {% set assetFile = asset_exists(addon.image) ? addon.image : 'bundles/atrophymeat/images/placeholders/no_photo_addon_thumb.jpg' %}
+                                <img src="{{ asset(assetFile) }}" alt="{{ addonName }}">
+                            </figure>
+                            <h2 class="darkGray">{{ ( addon.data.title is defined ) ? addon.data.title : addon.name }}</h2>
+                            <span class="price orange upperCase">{{ addon.price }} UAH</span>
+                            <div class="eachingText clear">
+                                {% if addon.data.imageName is defined and addon.data.imageName is not empty %}
+                                    <p class="darkGray"><span class="stableSize orange">Имя изображения: </span>{{ addon.data.imageName }}</p>
+                                {% endif %}
+                                {% if addon.data.text is defined and addon.data.text is not empty %}
+                                    <p class="darkGray"><span class="stableSize orange">Текст гравировки: </span>{{ addon.data.text }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/mouseWheel.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/scrollpane.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/cart.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(function(){
+            header.init();
+            search.init();
+            cart.init();
+        });
+    </script>
+{% endblock %}

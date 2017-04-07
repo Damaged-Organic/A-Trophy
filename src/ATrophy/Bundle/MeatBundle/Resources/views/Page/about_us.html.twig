@@ -1,0 +1,100 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/Page/about_us.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain route %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content extraP about clear">
+        <div class="row first">
+            <section class="inner">
+                <h1 class="darkGray">{{ 'description.headline'|trans|raw }}</h1>
+                <p class="darkGray">{{ 'description.paragraph_1'|trans }}</p>
+                <p class="darkGray">{{ 'description.paragraph_2'|trans }}</p>
+            </section>
+        </div>
+        <div class="row bgWhite whyUs">
+            <section class="inner">
+                <h1 class="underBorder upperCase darkGray">{{ 'why_us.headline'|trans }}</h1>
+                <ul>
+                    <li>
+                        <p class="easeInOutQuad darkGray">{{ 'why_us.paragraph_1'|trans }}</p>
+                    </li>
+                    <li>
+                        <p class="easeInOutQuad darkGray">{{ 'why_us.paragraph_2'|trans }}</p>
+                    </li>
+                    <li>
+                        <p class="easeInOutQuad darkGray">{{ 'why_us.paragraph_3'|trans }}</p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <div class="row bgGray principles">
+            <section class="inner">
+                <h1 class="underBorder upperCase darkGray">{{ 'our_principles.headline'|trans }}</h1>
+                <ul>
+                    <li class="easeInOutQuad whiteBg">
+                        <h2 class="upperCase darkGray">{{ 'our_principles.block_1.title'|trans }}</h2>
+                        <p class="darkGray">{{ 'our_principles.block_1.text'|trans }}</p>
+                    </li>
+                    <li class="easeInOutQuad whiteBg">
+                        <h2 class="upperCase darkGray">{{ 'our_principles.block_2.title'|trans }}</h2>
+                        <p class="darkGray">{{ 'our_principles.block_2.text'|trans }}</p>
+                    </li>
+                    <li class="easeInOutQuad whiteBg">
+                        <h2 class="upperCase darkGray">{{ 'our_principles.block_3.title'|trans }}</h2>
+                        <p class="darkGray">{{ 'our_principles.block_3.text'|trans }}</p>
+                    </li>
+                    <li class="easeInOutQuad whiteBg">
+                        <h2 class="upperCase darkGray">{{ 'our_principles.block_4.title'|trans }}</h2>
+                        <p class="darkGray">{{ 'our_principles.block_4.text'|trans }}</p>
+                    </li>
+                    <li class="easeInOutQuad whiteBg">
+                        <h2 class="upperCase darkGray">{{ 'our_principles.block_5.title'|trans }}</h2>
+                        <p class="darkGray">{{ 'our_principles.block_5.text'|trans }}</p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <div class="row bgWhite">
+            <section class="inner ourVision">
+                <h1 class="underBorder upperCase darkGray">{{ 'our_vision.headline'|trans }}</h1>
+                <p class="easeInOutQuad darkGray">{{ 'our_vision.paragraph_1'|trans }}</p>
+            </section>
+            <section class="inner ourClients">
+                <h1 class="underBorder upperCase darkGray">{{ 'our_clients.headline'|trans }}</h1>
+                <ul>
+                    {% for client in clients %}
+                        <li class="easeInOutQuad">
+                            <figure><img src="{{ asset('bundles/atrophymeat/images/about/clients/' ~ client.image) }}" alt="{{ client.name }}"></figure>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/about.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(function(){
+            header.init();
+            search.init();
+            about.init();
+        });
+    </script>
+{% endblock %}

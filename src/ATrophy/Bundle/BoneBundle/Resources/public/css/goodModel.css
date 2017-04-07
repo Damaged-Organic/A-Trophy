@@ -1,0 +1,70 @@
+/*====================================
+**	goodModelZone start 						**
+====================================*/
+.goodModelZone .fieldsArea label{
+	display: block;
+	margin-bottom: 5px;
+}
+.goodModelZone .fieldsArea label + input[type=text]{
+	margin-bottom: 20px;
+}
+.goodModelZone select{
+	width: 100%;
+	overflow: hidden;
+}
+.goodModelZone .several{
+	margin-top: 20px;
+}
+.goodModelZone .several .row{
+	width: 32%;
+	float: left;
+}
+.goodModelZone .several .row:nth-child(2){
+	margin: 0 2%;
+}
+
+.goodModelZone .addOns{
+	width: 70%;
+	margin: 20px auto 60px;
+	text-align: center;
+}
+.goodModelZone .addOns h2{
+	margin: 20px 0;
+}
+.goodModelZone .addOns label{
+	display: inline-block;
+	width: auto;
+	margin: 5px;
+	background: #f7f7f7;
+	border: 1px solid #d7d7d7;
+	border-radius: 5px;
+	padding: 12px 15px;
+}
+.goodModelZone .addOns label:hover{
+	background: #cc5200;
+	color: #fff;
+}
+.goodModelZone .unit .fieldsArea .several{
+	margin-top: 0;
+	text-align: center;
+}
+.goodModelZone .unit .fieldsArea .several .row:nth-child(1) label:before{
+	display: inline-block;
+	margin-top: 1px;
+}
+.goodModelZone .unit table{
+	width: 92%;
+	margin: 0 auto 30px;
+}
+.goodModelZone .unit table input{
+	border: none;
+	border-radius: 0;
+	font-size: 1em;
+	background: #fff;
+}
+.ui-selectmenu-menu .ui-menu{
+    max-height: 300px;
+}
+/*====================================
+**	goodModelZone end 						**
+====================================*/

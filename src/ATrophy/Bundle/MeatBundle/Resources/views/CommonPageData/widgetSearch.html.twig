@@ -1,0 +1,8 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/widgetSearch.html.twig #}
+<div id="searchPopUp" class="popUp whiteBg easeInOutQuad bs">
+    <span class="close fa fa-times easeInOutQuad bs darkGray orangeHover"></span>
+    <form action="{{ path('atrophy_meat_search') }}" id="searchForm" method="POST">
+        <input type="text" name="searchString" value="" placeholder="Хотите что-то найти?" class="bs easeInOutQuad" data-rule-required="true">
+        <button type="submit" class="bs easeInOutQuad"><span class="fa fa-search"></span></button>
+    </form>
+</div>

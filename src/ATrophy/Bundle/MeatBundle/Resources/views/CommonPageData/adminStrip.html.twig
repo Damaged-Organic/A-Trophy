@@ -1,0 +1,10 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/adminStrip.html.twig #}
+{% if is_granted('ROLE_ADMIN') %}
+    <div id="adminPanel">
+        <ul>
+            <li><a href="{{ path('atrophy_bone_homepage') }}" class="fa fa-plus"></a></li>
+            <li><a href="{{ path('logout') }}" class="fa fa-sign-out"></a></li>
+            <li><a href="#" class="fa fa-chevron-right"></a></li>
+        </ul>
+    </div>
+{% endif %}

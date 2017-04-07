@@ -1,0 +1,148 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ news start 											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.content.news .inner{
+	overflow: visible;
+}
+.news h1{
+	margin: 30px 0 20px;
+}
+.news .item{
+	width: 32%;
+	float: left;
+	height: 480px;
+	position: relative;
+	margin: 10px 0 30px;
+	box-shadow: 0 0 10px #7a7a7a;
+	overflow: hidden;
+}
+.news .item .editable{
+    background: #f7f7f7 !important;
+}
+.news .item:nth-child(3n+2){
+	margin: 10px 2% 30px;
+}
+.news .item figure{
+	padding: 10px 10px 0;
+	max-height: 210px;
+	overflow: hidden;
+}
+.news .item .info{
+	width: 100%;
+	height: 160px;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.news .item h2{
+	font-size: 1em;
+	padding: 0 10px;
+}
+.news .item time{
+    margin-top: 5px;
+    text-align: center;
+}
+.news .item p{
+	height: 100px;
+	text-align: center;
+	padding: 10px;
+	position: relative;
+	overflow: hidden;
+}
+
+.news .newsArticle{
+	width: 100%;
+    position: relative;
+	overflow: hidden;
+}
+.news .newsArticle figure{
+	width: 50%;
+	float: left;
+	margin: 10px 20px 0 0;
+	overflow: hidden;
+}
+.news .newsArticle h2{
+	padding: 5px 20px 5px;
+	text-align: left;
+}
+.news .newsArticle time{
+	padding-bottom: 10px;
+}
+.news .newsArticle [id^=line-]{
+    font-family: "Roboto Condensed", sans-serif;
+    color: #363636;
+    font-size: 0.875em;
+}
+.news .newsArticle [id^=line-] a,
+.news .newsArticle [id^=line-] span{
+    font-size: 1em;
+}
+.news .newsArticle [id^=line-] a{
+    color: #cc5200;
+    text-decoration: none;
+}
+.news .newsArticle [id^=line-] a:hover{
+    text-decoration: underline;
+}
+.news .newsArticle p{
+	padding: 0 20px 10px 0;
+}
+.news .social-likes{
+	width: 100%;
+	margin: 0px auto 20px;
+	overflow: hidden;
+}
+
+.news .social-likes__widget:first-child{
+	margin-left: 0;
+}
+.news .social-likes .social-likes__icon{
+	color: #fff;
+}
+.news .social-likes__icon_facebook{
+	top: 0;
+}
+
+.news .lastNews{
+	margin-bottom: 40px;
+}
+.news .lastNews h1{
+	margin: 10px 0 20px;
+}
+.news .lastNews .grid .item{
+	width: 32.333%;
+	float: left;
+	height: 220px;
+	margin: 10px 0 10px;
+	position: relative;
+	box-shadow: 0 0 10px #7a7a7a;
+	overflow: hidden;
+}
+.news .lastNews .grid .item:nth-child(3n+2){
+	margin: 10px 1.5% 10px;
+}
+.news .lastNews .grid .item figure{
+	display: inline-block;
+	width: 50%;
+	padding: 10px 10px 0;
+	float: left;
+	overflow: hidden;
+}
+.news .lastNews .grid .item h3{
+	display: inline-block;
+	width: 45%;
+	float: left;
+	padding: 7px 10px 2px 0;
+	text-align: left;
+	overflow: hidden;
+}
+.news .lastNews .grid .item time{
+    text-align: left;
+}
+.news .lastNews .grid .item p{
+	display: inline-block;
+	text-align: left;
+	padding: 5px 10px 0;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ news end 											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

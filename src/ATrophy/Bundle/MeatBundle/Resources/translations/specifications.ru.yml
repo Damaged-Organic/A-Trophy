@@ -1,0 +1,36 @@
+# src/ATrophy/Bundle/MeatBundle/Resources/translations/specifications.ru.yml
+color:
+    name:    "Цвет"
+    measure: ""
+
+colorTouch:
+    name:    "Оттенок"
+    measure: ""
+
+height:
+    name:    "Высота"
+    measure: "см"
+
+diameterGoblet:
+    name:    "Диаметр чаши"
+    measure: "см"
+
+diameterMedal:
+    name:    "Диаметр медали"
+    measure: "мм"
+
+diameterToken:
+    name:    "Диаметр жетона"
+    measure: "мм"
+
+diameter:
+    name:    "Диаметр"
+    measure: "мм"
+
+width:
+    name:    "Ширина"
+    measure: "мм"
+
+size:
+    name:    "Размер"
+    measure: "мм"

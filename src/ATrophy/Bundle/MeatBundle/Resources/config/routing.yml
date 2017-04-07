@@ -1,0 +1,160 @@
+# ATrophy/Bundle/MeatBundle/Resources/config/routing.yml
+
+# Pages
+
+atrophy_meat_homepage:
+    path:     /
+    defaults: { _controller: ATrophyMeatBundle:Page:index }
+    methods:  [GET]
+
+atrophy_meat_about_us:
+    path:     /about_us
+    defaults: { _controller: ATrophyMeatBundle:Page:aboutUs }
+    methods:  [GET]
+
+atrophy_meat_news:
+    path:     /news/{page}
+    defaults: { _controller: ATrophyMeatBundle:Page:news, page: 1 }
+    methods:  [GET]
+    requirements:
+        page: \d+
+
+atrophy_meat_news_article:
+    path:     /news/{id}/{imprint}
+    defaults: { _controller: ATrophyMeatBundle:Page:newsArticle }
+    methods:  [GET]
+    requirements:
+        id: \d+
+
+atrophy_meat_delivery_and_payment:
+    path:     /delivery_and_payment
+    defaults: { _controller: ATrophyMeatBundle:Page:deliveryAndPayment }
+    methods:  [GET]
+
+atrophy_meat_faq:
+    path:     /faq
+    defaults: { _controller: ATrophyMeatBundle:Page:faq }
+    methods:  [GET]
+
+atrophy_meat_contacts:
+    path:     /contacts
+    defaults: { _controller: ATrophyMeatBundle:Page:contacts }
+    methods:  [GET]
+
+atrophy_meat_search:
+    path:     /search/{page}
+    defaults: { _controller: ATrophyMeatBundle:Page:search, page: 1 }
+    methods:  [GET, POST]
+    requirements:
+        page: \d+
+
+# Shop
+
+atrophy_meat_promotions:
+    path:     /promotions/{page}
+    defaults: { _controller: ATrophyMeatBundle:Shop:promotions, page: 1 }
+    methods:  [GET]
+    requirements:
+        page: \d+
+
+atrophy_meat_shop:
+    path:     /shop/{category}/{page}
+    defaults: { _controller: ATrophyMeatBundle:Shop:shop, page: 1 }
+    methods:  [GET]
+    requirements:
+        category: %atrophy.model.categories%
+        page:     \d+
+
+atrophy_meat_thematics:
+    path:     /thematics/{page}
+    defaults: { _controller: ATrophyMeatBundle:Shop:thematics, page: 1 }
+    methods:  [GET]
+    requirements:
+        page: \d+
+
+atrophy_meat_cart:
+    path:     /cart/products
+    defaults: { _controller: ATrophyMeatBundle:Cart:products }
+    methods:  [GET, POST]
+
+atrophy_meat_cart_checkout:
+    path:     /cart/checkout
+    defaults: { _controller: ATrophyMeatBundle:Cart:checkout }
+    methods:  [GET, POST]
+
+# Model
+
+atrophy_meat_model:
+    path:     /shop/{id}/{imprint}
+    defaults: { _controller: ATrophyMeatBundle:Shop:model }
+    methods:  [GET]
+    requirements:
+        id: \d+
+
+atrophy_meat_promotions_model:
+    path:     /promotions/{id}/{imprint}
+    defaults: { _controller: ATrophyMeatBundle:Shop:model }
+    methods:  [GET]
+    requirements:
+        id: \d+
+
+atrophy_meat_shop_model:
+    path:     /shop/{category}/{id}/{imprint}
+    defaults: { _controller: ATrophyMeatBundle:Shop:model }
+    methods:  [GET]
+    requirements:
+        category: %atrophy.model.categories%
+        id:       \d+
+
+atrophy_meat_thematics_model:
+    path:     /thematics/{id}/{imprint}
+    defaults: { _controller: ATrophyMeatBundle:Shop:model }
+    methods:  [GET]
+    requirements:
+        id: \d+
+
+# AJAX
+
+atrophy_feedback_send:
+    path:     /feedback/send
+    defaults: { _controller: ATrophyMeatBundle:Feedback:send }
+    methods:  [POST]
+
+atrophy_shop_filter:
+    path:     /shop_filter/catalog_elements
+    defaults: { _controller: ATrophyMeatBundle:ShopFilter:catalogElements }
+    methods:  [POST]
+
+atrophy_inventory_rate:
+    path:     /inventory/rate
+    defaults: { _controller: ATrophyMeatBundle:Inventory:rate }
+    methods:  [POST]
+
+atrophy_inventory_select:
+    path:     /inventory/select
+    defaults: { _controller: ATrophyMeatBundle:Inventory:select }
+    methods:  [POST]
+
+atrophy_inventory_add:
+    path:     /inventory/add/{productId}
+    defaults: { _controller: ATrophyMeatBundle:Inventory:add }
+    methods:  [POST]
+    requirements:
+        productId: \d+
+
+atrophy_inventory_delete:
+    path:     /inventory/delete/{productId}
+    defaults: { _controller: ATrophyMeatBundle:Inventory:delete }
+    methods:  [POST]
+    requirements:
+        productId: \d+
+
+atrophy_meat_cart_quantity:
+    path:     /cart/quantity
+    defaults: { _controller: ATrophyMeatBundle:Cart:quantity }
+    methods:  [POST]
+
+atrophy_meat_cart_delete_item:
+    path:     /cart/delete_item
+    defaults: { _controller: ATrophyMeatBundle:Cart:deleteItem }
+    methods:  [POST]

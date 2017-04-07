@@ -1,0 +1,4 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Inventory/addonItems.html.twig #}
+{% for addon in addons %}
+    <li class='darkGray'>{{ addon['name'] }} <span class='orange stableSize'>+ {{ addon['price'] }} UAH</span></li>
+{% endfor %}

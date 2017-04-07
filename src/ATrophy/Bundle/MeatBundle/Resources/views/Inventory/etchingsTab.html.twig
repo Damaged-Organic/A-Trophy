@@ -1,0 +1,16 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Inventory/etchingsTab.html.twig #}
+<li class="{{ ( addonType == 'plate' ) ? 'noUpload' : '' }}">
+    <div class="addOnUpload">
+        {% if etchings.text %}
+            <textarea name="etching[{{ etchings.type }}][text]" value="" placeholder="Впишите желаемый текст гравировки" class="bs easeInOutQuad"></textarea>
+        {% endif %}
+        {% if etchings.image %}
+            <input type="file" name="etching[{{ etchings.type }}][image]" value="" id="addOnFile" accept="image/jpeg,image/png,image/gif">
+            <label for="addOnFile" class="fa fa-upload darkGray orangeHover bs">Выберите изображение</label>
+        {% endif %}
+        <div id="progressBar" class="bs easeInOutQuad">
+            <div id="progress"></div>
+        </div>
+        <button type="submit" class="sendAddOn easeInOutQuad bs">Отправить</button>
+    </div>
+</li>

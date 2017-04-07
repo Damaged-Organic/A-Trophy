@@ -1,0 +1,52 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/Page/faq.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain route %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/faq.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content extraP clear faq">
+        <section class="inner">
+            <h1 class="underBorder upperCase darkGray">{{ 'headline'|trans }}</h1>
+            <div id="roll">
+                {% for question in questions %}
+                    <article class="item">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('atrophy_bone_faq', { 'faqId': question.id }) }}" class="editable fa fa-pencil-square" target="_blank"></a>
+                        {% endif %}
+                        <div class="question panel pseudoOrange">
+                            <a href="#" class="easeInOutQuad darkGray">{{ question.question }}</a>
+                        </div>
+                        <div class="answer panel easeInOutQuad pseudoOrange">
+                            <p class="darkGray">{{ question.answer }}</p>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/faq.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(function(){
+            header.init();
+            search.init();
+            faq.init();
+        });
+    </script>
+{% endblock %}

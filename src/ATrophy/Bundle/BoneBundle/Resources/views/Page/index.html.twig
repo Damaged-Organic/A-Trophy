@@ -1,0 +1,52 @@
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/index.html.twig #}
+{% extends 'ATrophyBoneBundle::layout.html.twig' %}
+
+{% set title = "Добавление данных" %}
+
+{% block head %}
+	<title>{{ title }} - DEM</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex, nofollow">
+	<link rel="icon" type="image/png" href="{{ asset('bundles/atrophybone/images/favicon.png') }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/add.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="page">
+		{% include 'ATrophyBoneBundle:Common:header.html.twig' with { 'title': title } only %}
+		<section class="content addZone">
+			<nav>
+				<ul>
+					<li>
+						<a href="{{ path('atrophy_bone_product') }}"><span class="fa fa-cube">Товар</span></a>
+					</li>
+					<li>
+						<a href="{{ path('atrophy_bone_addon', { 'addonType': 'token' }) }}"><span class="fa fa-cubes">Жетоны</span></a>
+					</li>
+					<li>
+						<a href="{{ path('atrophy_bone_addon', { 'addonType': 'ribbon' }) }}"><span class="fa fa-cubes">Ленты</span></a>
+					</li>
+					<li>
+						<a href="{{ path('atrophy_bone_addon', { 'addonType': 'box' }) }}"><span class="fa fa-cubes">Коробки</span></a>
+					</li>
+					
+					<li>
+						<a href="{{ path('atrophy_bone_news') }}"><span class="fa fa-newspaper-o">Новости</span></a>
+					</li>
+					<li>
+						<a href="{{ path('atrophy_bone_faq') }}"><span class="fa fa-question-circle">Вопросы</span></a>
+					</li>
+					<li>
+						<a href="{{ path('atrophy_bone_promo') }}"><span class="fa fa-picture-o">Акции</span></a>
+					</li>
+				</ul>	
+			</nav>
+		</section>
+	</div>
+	{% include 'ATrophyBoneBundle:Common:footer.html.twig' %}
+{% endblock %}

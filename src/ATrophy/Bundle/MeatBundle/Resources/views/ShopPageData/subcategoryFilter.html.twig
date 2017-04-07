@@ -1,0 +1,11 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/subcategoryFilter.html.twig #}
+{% if subcategories %}
+    <section class="panel bs">
+        <h2 class="darkGray">Категория</h2>
+        {% for subcategory in subcategories %}
+            <input type="checkbox" name="filter[subcategory][]" value="{{ subcategory.id }}" id="{{ subcategory.id }}"
+                   {% if filter_parameters.subcategory is defined and subcategory.id in filter_parameters.subcategory %}checked="checked"{% endif %}>
+            <label for="{{ subcategory.id }}" class="fa fa-square darkGray orangeHover pseudoGray easeInOutQuad {{ ( loop.last ) ? 'mb20' : '' }}">{{ subcategory.title }}</label>
+        {% endfor %}
+    </section>
+{% endif %}

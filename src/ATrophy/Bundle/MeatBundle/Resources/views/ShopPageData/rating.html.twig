@@ -1,0 +1,5 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/rating.html.twig #}
+{% for rating in 5..1 %}
+    <span class="star gray {{ ( ratingScore >= rating ) ? 'active' : '' }}" title="{{ rating }}" data-info='{"modelId": {{ productId }}, "rating": "{{ rating }}"}'></span>
+{% endfor %}
+<p class="voteCount darkGray">Оценило пользователей: <span class="stableSize orange">{{ ratingVotes }}</span></p>

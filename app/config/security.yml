@@ -1,0 +1,37 @@
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        ATrophy\Entity\Bone\User:                  sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            entity:
+                class:    ATrophy\Entity\Bone\User
+                property: email
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secured_area:
+            pattern:   /
+            anonymous: ~
+            form_login:
+                login_path:         /login
+                check_path:         /dem/login_check
+                csrf_provider:      form.csrf_provider
+                intention:          deus_ex_machina
+                username_parameter: _email
+            logout:
+                path:   /dem/logout
+                target: /
+
+    access_control:
+        - { path: ^/dem, roles: ROLE_ADMIN }
+        - { path: ^/dem/, roles: ROLE_ADMIN }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

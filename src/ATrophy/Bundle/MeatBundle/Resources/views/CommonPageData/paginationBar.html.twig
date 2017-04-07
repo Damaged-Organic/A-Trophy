@@ -1,0 +1,20 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/paginationBar.html.twig #}
+{% if paginationBar.navigation_required %}
+<ul>
+    {% set page_prev = ( paginationBar.side_buttons.page_prev ) ? paginationBar.side_buttons.page_prev : 1 %}
+    <li><a href="{{ path(route, { 'category': category }) }}/{{ page_prev }}" class="easeInOutQuad fa fa-chevron-left darkGray orangeHover"></a></li>
+    {% for item in paginationBar.navigation_items %}
+        {% if item == 'separator' %}
+            <li><span class="easeInOutQuad dots fa fa-ellipsis-h darkGray"></span></li>
+        {% else %}
+            <li>
+                <a href="{{ path(route, { 'category': category }) }}/{{ item }}" class="easeInOutQuad darkGray whiteHover {{ (item == paginationBar.current_page) ? 'active' : '' }} orangeBgHover">
+                    {{ item }}
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+    {% set page_next = ( paginationBar.side_buttons.page_next ) ? paginationBar.side_buttons.page_next : paginationBar.pages_number %}
+    <li><a href="{{ path(route, { 'category': category }) }}/{{ page_next }}" class="easeInOutQuad fa fa-chevron-right darkGray orangeHover"></a></li>
+</ul>
+{% endif %}

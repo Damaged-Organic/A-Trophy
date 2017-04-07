@@ -1,0 +1,79 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/Page/newsArticle.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% trans_default_domain route %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/social-buttons.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/news.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content extraP clear news">
+        <section class="inner">
+            <h1 class="underBorder upperCase darkGray">{{ 'headline'|trans }}</h1>
+            <article class="newsArticle clear">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('atrophy_bone_news', { 'newsId': newsArticle.id }) }}" class="editable fa fa-pencil-square" target="_blank"></a>
+                {% endif %}
+                <figure>
+                    {% set assetFile = 'bundles/atrophymeat/images/news/' ~ newsArticle.imageOriginal %}
+                    {% set assetFile = asset_exists(assetFile) ? assetFile : 'bundles/atrophymeat/images/placeholders/no_photo_news.jpg' %}
+                    <img src="{{ asset(assetFile) }}" alt="{{ newsArticle.title }}">
+                </figure>
+                <h2 class="darkGray">{{ newsArticle.title }}</h2>
+                <time datetime="{{ newsArticle.created|date("Y-m-d") }}" class="orange">
+                    {{ monthsNames[newsArticle.created|date("n")] }}, {{ newsArticle.created|date("d, Y") }}
+                </time>
+                <p class="darkGray">{{ newsArticle.text|raw }}</p>
+            </article>
+            <div class="social-likes white" data-counters="yes">
+                <div class="facebook" title="{{ 'social.share'|trans }} {{ 'social.in.facebook'|trans }}">{{ 'social.name.facebook'|trans }}</div>
+                <div class="twitter" title="{{ 'social.share'|trans }} {{ 'social.in.twitter'|trans }}">{{ 'social.name.twitter'|trans }}</div>
+                <div class="vkontakte" title="{{ 'social.share'|trans }} {{ 'social.in.vkontakte'|trans }}">{{ 'social.name.vkontakte'|trans }}</div>
+                <div class="plusone" title="{{ 'social.share'|trans }} {{ 'social.in.googleplus'|trans }}">{{ 'social.name.googleplus'|trans }}</div>
+            </div>
+        </section>
+        <aside class="inner lastNews clear">
+            <h1 class="upperCase darkGray">{{ 'latest_headline'|trans }}</h1>
+            <div class="grid">
+                {% for article in newsRecent %}
+                    <article class="item textGradient smokeBg">
+                        <figure class="bs">
+                            {% set assetFile = 'bundles/atrophymeat/images/news/' ~ article.imageThumb %}
+                            {% set assetFile = asset_exists(assetFile) ? assetFile : 'bundles/atrophymeat/images/placeholders/no_photo_news_thumb.jpg' %}
+                            <a href="{{ path('atrophy_meat_news') }}/{{ article.id }}/{{ article.imprint }}"><img src="{{ asset(assetFile) }}" alt="{{ article.title }}"></a>
+                        </figure>
+                        <a href="{{ path('atrophy_meat_news') }}/{{ article.id }}/{{ article.imprint }}">
+                            <h3 class="darkGray">{{ ( article.title|length >= 75 ) ? article.title[:75] ~ '...' : article.title }}</h3>
+                        </a>
+                        <time datetime="{{ article.created|date("Y-m-d") }}" class="orange">
+                            {{ monthsNames[article.created|date("n")] }}, {{ article.created|date("d, Y") }}
+                        </time>
+                        <p class="darkGray">{{ article.text|striptags[:250] }}</p>
+                    </article>
+                {% endfor %}
+            </div>
+        </aside>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/social-buttons.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(function(){
+            header.init();
+            search.init();
+        });
+    </script>
+{% endblock %}

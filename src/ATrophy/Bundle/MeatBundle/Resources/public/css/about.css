@@ -1,0 +1,173 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ about start 											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.content.about{
+	text-align: center;
+	background: url(../images/about/about-bg.jpg) repeat;
+	overflow: hidden;
+}
+.content.about .inner{
+	margin-bottom: 30px;
+}
+.content.about h1{
+	margin-top: 30px;
+}
+.content.about p{
+	padding: 20px 100px;
+}
+.content.about .whyUs p{
+	-webkit-transition-duration: 1s;
+	-o-transition-duration: 1s;
+	transition-duration: 1s;
+	opacity: 0;
+	-webkit-transform: translateY(120%);
+	-ms-transform: translateY(120%);
+	-o-transform: translateY(120%);
+	transform: translateY(120%);
+}
+.content.about .whyUs.scrolled p{
+	opacity: 1;
+	-webkit-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	-o-transform: translateY(0%);
+	transform: translateY(0%);
+}
+.content.about ul{
+	display: block;
+	text-align: center;
+	overflow: hidden;
+}
+.content.about li{
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	margin: 30px 1% 0;
+}
+.content.about li p{
+	padding: 10px;
+}
+.content.about .whyUs li:before{
+	display: inline-block;
+	content: "";
+	width: 175px;
+	height: 175px;
+	background: url(../images/about/whyus-sprite.png) no-repeat 0 0;
+	overflow: hidden;
+}
+.content.about .whyUs li:nth-child(2):before{
+	background: url(../images/about/whyus-sprite.png) no-repeat 0 -175px;
+}
+.content.about .whyUs li:nth-child(3):before{
+	background: url(../images/about/whyus-sprite.png) no-repeat 0 -350px;
+}
+
+.content.about .principles li{
+	width: 19%;
+	min-height: 390px;
+	background: #fff;
+	margin: 30px 1px;
+	border-radius: 5px;
+	-webkit-transition-duration: 1s;
+	-o-transition-duration: 1s;
+	transition-duration: 1s;
+	-webkit-transition-property: transform;
+	-o-transition-property: transform;
+	transition-property: transform;
+	-webkit-transform: translateX(-100%) scale(0.5);
+	-ms-transform: translateX(-100%) scale(0.5);
+	-o-transform: translateX(-100%) scale(0.5);
+	transform: translateX(-100%) scale(0.5);
+}
+.content.about .principles li:nth-child(2){
+	-webkit-transform: translateX(-200%) scale(0.5);
+	-ms-transform: translateX(-200%) scale(0.5);
+	-o-transform: translateX(-200%) scale(0.5);
+	transform: translateX(-200%) scale(0.5);
+}
+.content.about .principles li:nth-child(3){
+	-webkit-transform: translateY(100%) scale(0.5);
+	-ms-transform: translateY(100%) scale(0.5);
+	-o-transform: translateY(100%) scale(0.5);
+	transform: translateY(100%) scale(0.5);
+}
+.content.about .principles li:nth-child(4){
+	-webkit-transform: translateX(200%) scale(0.5);
+	-ms-transform: translateX(200%) scale(0.5);
+	-o-transform: translateX(200%) scale(0.5);
+	transform: translateX(200%) scale(0.5);
+}
+.content.about .principles li:nth-child(5){
+	-webkit-transform: translateX(100%) scale(0.5);
+	-ms-transform: translateX(100%) scale(0.5);
+	-o-transform: translateX(100%) scale(0.5);
+	transform: translateX(100%) scale(0.5);
+}
+.content.about .principles.scrolled li{
+	-webkit-transform: translate3d(0px, 0px, 0px) scale(1);
+	-ms-transform: translate3d(0px, 0px, 0px) scale(1);
+	-o-transform: translate3d(0px, 0px, 0px) scale(1);
+	transform: translate3d(0px, 0px, 0px) scale(1);
+}
+.content.about .principles li:before{
+	display: inline-block;
+	content: "";
+	width: 100px;
+	height: 100px;
+	margin: 20px 0 10px;
+	background: url(../images/about/about-principles-sprite.png) no-repeat 0 0;
+	overflow: hidden;
+}
+.content.about .principles li:nth-child(2):before{
+	background: url(../images/about/about-principles-sprite.png) no-repeat 0 -100px;
+}
+.content.about .principles li:nth-child(3):before{
+	background: url(../images/about/about-principles-sprite.png) no-repeat 0 -200px;
+}
+.content.about .principles li:nth-child(4):before{
+	background: url(../images/about/about-principles-sprite.png) no-repeat 0 -300px;
+}
+.content.about .principles li:nth-child(5):before{
+	background: url(../images/about/about-principles-sprite.png) no-repeat 0 -400px;
+}
+.content.about .principles li p{
+	padding: 20px 10px
+}
+.content.about .ourVision p{
+	padding: 60px 80px 20px;
+	opacity: 0;
+	-webkit-transition-duration: 1s;
+	-o-transition-duration: 1s;
+	transition-duration: 1s;
+	-webkit-transform: translateY(50%);
+	-ms-transform: translateY(50%);
+	-o-transform: translateY(50%);
+	transform: translateY(50%);
+}
+.content.about .scrolled .ourVision p{
+	opacity: 1;
+	-webkit-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	-o-transform: translateY(0%);
+	transform: translateY(0%);
+}
+.content.about .ourClients ul{
+	margin-top: 30px;
+}
+.content.about .ourClients li{
+	width: 150px;
+	vertical-align: middle;
+	margin: 10px;
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+}
+.content.about .scrolled .ourClients li{
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ about end 											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

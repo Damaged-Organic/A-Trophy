@@ -1,0 +1,38 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/header.html.twig #}
+<div class="preHeader smokeBg">
+    <div class="inner">
+		<ul>
+			<li class="logo">
+				<a href="{{ path('atrophy_meat_homepage') }}">
+					<img src="{{ asset('bundles/atrophymeat/images/logo.png') }}" alt="A-Trophy logo">
+				</a>
+			</li>
+            <li class="address">
+                {% for address in contacts.address %}
+                    <span class="darkGray fa fa-map-marker">{{ address.credential }}</span>
+                {% endfor %}
+            </li>
+			<li class="mail">
+				{% for email in contacts.email %}
+					<a href="mailto:{{ email.credential }}" class="darkGray orangeHover easeInOutQuad fa fa-envelope-o">{{ email.credential }}</a>
+				{% endfor %}
+			</li>
+            <li class="phones">
+                <span class="darkGray fa fa-phone"></span>
+                {% for phone in contacts.phone %}
+                    <a href="tel:{{ phone.credential|replace({' ': null, '(': null, ')': null, '-': null}) }}" class="darkGray orangeHover easeInOutQuad">
+                        {{ phone.credential }}
+                    </a>
+                {% endfor %}
+            </li>
+			<li class="widgets">
+				<div class="basket" id="basketWidget">
+					{% include 'ATrophyMeatBundle:CommonPageData:widgetCart.html.twig' with {'cartItemsNumber': cartItemsNumber} only %}
+				</div>
+                <div class="search">
+                    <a href="#" class="icon fa fa-search gray orangeHover easeInOutQuad"></a>
+                </div>
+			</li>
+		</ul>
+    </div>
+</div>

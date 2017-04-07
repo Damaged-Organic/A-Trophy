@@ -1,0 +1,7 @@
+parameters:
+#    a_trophy_bone.example.class: ATrophy\Bundle\BoneBundle\Example
+
+services:
+#    a_trophy_bone.example:
+#        class: %a_trophy_bone.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

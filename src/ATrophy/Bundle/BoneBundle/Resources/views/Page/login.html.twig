@@ -1,0 +1,37 @@
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/login.html.twig #}
+{% extends 'ATrophyBoneBundle::layout.html.twig' %}
+
+{% block head %}
+	<title>DEM - Аутентификация</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="{{ asset('bundles/atrophybone/images/favicon.png') }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/authorization.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="page">
+		<section class="authorization">
+			<h1>Аутентификация</h1>
+			<form action="{{ path('login_check') }}" id="#authForm" method="POST" autocomplete="off">
+				<label for="login">
+					<input type="text" name="_email" placeholder="Введите логин" id="login">
+				</label>
+				<label for="password">
+					<input type="password" name="_password" placeholder="Введите пароль" id="password">
+				</label>
+				<input type="hidden" name="_target_path" value="{{ url('atrophy_meat_homepage') }}" />
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('deus_ex_machina') }}">
+				{% if error %}
+					<p>{{ error.message|trans }}</p>
+				{% endif %}
+				<button type="submit" class="borderBox">ВОЙТИ</button>
+			</form>
+		</section>
+	</div>
+{% endblock %}

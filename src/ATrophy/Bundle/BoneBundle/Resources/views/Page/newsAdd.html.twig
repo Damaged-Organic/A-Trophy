@@ -1,0 +1,163 @@
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/newsAdd.html.twig #}
+{% extends 'ATrophyBoneBundle::layout.html.twig' %}
+
+{% set title = "Добавление новостной статьи" %}
+
+{% block head %}
+    <title>{{ title }} - DEM</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="{{ asset('bundles/atrophybone/images/favicon.png') }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/quill.snow.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/editor.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/news.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page">
+        {% include 'ATrophyBoneBundle:Common:header.html.twig' with { 'title': title } only %}
+        <section class="content newsZone">
+            <form action="{{ path('atrophy_bone_news', { 'newsId': 0, 'action': "create" }) }}" method="POST" id="news" autocomplete="off" enctype="multipart/form-data">
+                <div class="wrap circleGradient">
+                    <div class="photo">
+                        <figure>
+                            <img src="{{ asset('bundles/atrophymeat/images/placeholders/no_photo_news_thumb.jpg') }}" alt="No-photo">
+                        </figure>
+                        <input type="file" name="file[image]" value="" id="modelPhoto">
+                        <label for="modelPhoto">Выбрать фотографию</label>
+                    </div>
+                    <div class="fieldsArea">
+                        <label for="modelName">Заголовок статьи</label>
+                        <input type="text" name="news[title]" value="" placeholder="Введите заголовок статьи" id="modelName">
+                        <div class="editorWrapper">
+                            <p class="fieldTitle">Текст новостной статьи</p>
+                            <div class="editor borderBox">
+                                <div class="toolbar">
+									<span class="ql-format-group">
+										<span class="ql-format-button ql-bold"></span>
+										<span class="ql-format-separator"></span>
+										<span class="ql-format-button ql-italic"></span>
+										<span class="ql-format-separator"></span>
+										<span class="ql-format-button ql-strike"></span>
+										<span class="ql-format-separator"></span>
+										<span class="ql-format-button ql-underline"></span>
+									</span>
+									<span class="ql-format-group">
+										<select class="ql-color">
+                                            <option value="rgb(0, 0, 0)" selected></option>
+                                            <option value="rgb(230, 0, 0)"></option>
+                                            <option value="rgb(255, 153, 0)"></option>
+                                            <option value="rgb(255, 255, 0)"></option>
+                                            <option value="rgb(0, 138, 0)"></option>
+                                            <option value="rgb(0, 102, 204)"></option>
+                                            <option value="rgb(153, 51, 255)"></option>
+                                            <option value="rgb(255, 255, 255)"></option>
+                                            <option value="rgb(250, 204, 204)"></option>
+                                            <option value="rgb(255, 235, 204)"></option>
+                                            <option value="rgb(255, 255, 204)"></option>
+                                            <option value="rgb(204, 232, 204)"></option>
+                                            <option value="rgb(204, 224, 245)"></option>
+                                            <option value="rgb(235, 214, 255)"></option>
+                                            <option value="rgb(187, 187, 187)"></option>
+                                            <option value="rgb(240, 102, 102)"></option>
+                                            <option value="rgb(255, 194, 102)"></option>
+                                            <option value="rgb(255, 255, 102)"></option>
+                                            <option value="rgb(102, 185, 102)"></option>
+                                            <option value="rgb(102, 163, 224)"></option>
+                                            <option value="rgb(194, 133, 255)"></option>
+                                            <option value="rgb(136, 136, 136)"></option>
+                                            <option value="rgb(161, 0, 0)"></option>
+                                            <option value="rgb(178, 107, 0)"></option>
+                                            <option value="rgb(178, 178, 0)"></option>
+                                            <option value="rgb(0, 97, 0)"></option>
+                                            <option value="rgb(0, 71, 178)"></option>
+                                            <option value="rgb(107, 36, 178)"></option>
+                                            <option value="rgb(68, 68, 68)"></option>
+                                            <option value="rgb(92, 0, 0)"></option>
+                                            <option value="rgb(102, 61, 0)"></option>
+                                            <option value="rgb(102, 102, 0)"></option>
+                                            <option value="rgb(0, 55, 0)"></option>
+                                            <option value="rgb(0, 41, 102)"></option>
+                                            <option value="rgb(61, 20, 102)"></option>
+                                        </select>
+										<select class="ql-background">
+                                            <option value="rgb(0, 0, 0)"></option>
+                                            <option value="rgb(230, 0, 0)"></option>
+                                            <option value="rgb(255, 153, 0)"></option>
+                                            <option value="rgb(255, 255, 0)"></option>
+                                            <option value="rgb(0, 138, 0)"></option>
+                                            <option value="rgb(0, 102, 204)"></option>
+                                            <option value="rgb(153, 51, 255)"></option>
+                                            <option value="rgb(255, 255, 255)" selected></option>
+                                            <option value="rgb(250, 204, 204)"></option>
+                                            <option value="rgb(255, 235, 204)"></option>
+                                            <option value="rgb(255, 255, 204)"></option>
+                                            <option value="rgb(204, 232, 204)"></option>
+                                            <option value="rgb(204, 224, 245)"></option>
+                                            <option value="rgb(235, 214, 255)"></option>
+                                            <option value="rgb(187, 187, 187)"></option>
+                                            <option value="rgb(240, 102, 102)"></option>
+                                            <option value="rgb(255, 194, 102)"></option>
+                                            <option value="rgb(255, 255, 102)"></option>
+                                            <option value="rgb(102, 185, 102)"></option>
+                                            <option value="rgb(102, 163, 224)"></option>
+                                            <option value="rgb(194, 133, 255)"></option>
+                                            <option value="rgb(136, 136, 136)"></option>
+                                            <option value="rgb(161, 0, 0)"></option>
+                                            <option value="rgb(178, 107, 0)"></option>
+                                            <option value="rgb(178, 178, 0)"></option>
+                                            <option value="rgb(0, 97, 0)"></option>
+                                            <option value="rgb(0, 71, 178)"></option>
+                                            <option value="rgb(107, 36, 178)"></option>
+                                            <option value="rgb(68, 68, 68)"></option>
+                                            <option value="rgb(92, 0, 0)"></option>
+                                            <option value="rgb(102, 61, 0)"></option>
+                                            <option value="rgb(102, 102, 0)"></option>
+                                            <option value="rgb(0, 55, 0)"></option>
+                                            <option value="rgb(0, 41, 102)"></option>
+                                            <option value="rgb(61, 20, 102)"></option>
+                                        </select>
+									</span>
+									<span class="ql-format-group">
+										<select class="ql-align">
+                                            <option value="left" selected></option>
+                                            <option value="center"></option>
+                                            <option value="right"></option>
+                                            <option value="justify"></option>
+                                        </select>
+									</span>
+									<span class="ql-format-group">
+										<span class="ql-format-button ql-link"></span>
+										<span class="ql-format-separator"></span>
+										<span class="ql-format-button ql-list"></span>
+									</span>
+                                </div>
+                                <div class="container"></div>
+                                <textarea name="news[text]"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit">Сохранить</button>
+            </form>
+        </section>
+    </div>
+    {% include 'ATrophyBoneBundle:Common:footer.html.twig' %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="{{ asset('bundles/atrophybone/js/lib/quill.min.js') }}"></script>
+    <script src="{{ asset('bundles/atrophybone/js/lib/editor.js') }}"></script>
+    <script>
+        $(function(){
+
+            editor.init($(".editorWrapper"));
+        });
+    </script>
+{% endblock %}

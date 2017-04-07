@@ -1,0 +1,4 @@
+#src/ATrophy/Bundle/BoneBundle/Resources/translations/messages.ru.yml
+The presented password cannot be empty.: Необходимо ввести пароль
+The presented password is invalid.: Неверный пароль
+Bad credentials: Неудачная попытка аутентификации

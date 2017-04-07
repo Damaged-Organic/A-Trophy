@@ -1,0 +1,90 @@
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/addonEdit.html.twig #}
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/productEdit.html.twig #}
+{% extends 'ATrophyBoneBundle::layout.html.twig' %}
+
+{% set title = "Редактирование дополнений" %}
+
+{% block head %}
+    <title>{{ title }} - DEM</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="{{ asset('bundles/atrophybone/images/favicon.png') }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/addOns.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page">
+        {% include 'ATrophyBoneBundle:Common:header.html.twig' with { 'title': title } only %}
+        <section class="content addOnsZone">
+            <form action="{{ path('atrophy_bone_addon', { 'addonType': addonType, 'action': "update" }) }}" id="addOns" method="POST" enctype="multipart/form-data">
+                {% for addon in addons %}
+                    <div class="wrap circleGradient">
+                        <label for="modelName">Наименование</label>
+                        <input type="text" name="addons[{{ addon.id }}][title]" value="{{ addon.title }}" placeholder="Введите название дополнения" id="modelName">
+                        <div class="fieldsArea">
+                            <div class="photo">
+                                <input type="hidden" name="addons[{{ addon.id }}][image]" value="{{ addon.image }}">
+                                {% if addonType == 'token' %}
+                                    {% set directory = 'tokens' %}
+                                {% elseif addonType == 'ribbon' %}
+                                    {% set directory = 'ribbons' %}
+                                {% elseif addonType == 'box' %}
+                                    {% set directory = 'boxes' %}
+                                {% endif %}
+                                <figure>
+                                    {% set assetPath = 'bundles/atrophymeat/images/store/addons/' ~ directory ~ '/' %}
+                                    {% set assetFile = asset_exists(assetPath ~ addon.image) ? assetPath ~ addon.image : 'bundles/atrophymeat/images/placeholders/no_photo_addon_thumb.jpg' %}
+                                    <img src="{{ asset(assetFile) }}" alt="{{ addon.image }}">
+                                </figure>
+                                <input type="file" name="file[image][{{ addon.id }}]" value="" id="modelPhoto_{{ addon.id }}">
+                                <label for="modelPhoto_{{ addon.id }}">Выбрать</label>
+                                <a href="{{ path('atrophy_bone_addon', { 'addonType': addonType, 'action': "delete_picture", 'addonId': addon.id }) }}" class="delete confirm fa fa-times"></a>
+                            </div>
+                            <div class="row">
+                                <label for="price">Цена</label>
+                                <input type="text" name="addons[{{ addon.id }}][price]" value="{{ addon.price }}" placeholder="Введите цену" id="price">
+                                {% if addonType == 'token' %}
+                                    <label for="diameter">Диаметр</label>
+                                    <input type="text" name="addons[{{ addon.id }}][diameter]" value="{{ addon.diameter }}" placeholder="Укажите диаметр" id="diameter">
+                                {% elseif addonType == 'ribbon' %}
+                                    <label for="width">Ширина</label>
+                                    <input type="text" name="addons[{{ addon.id }}][width]" value="{{ addon.width }}" placeholder="Укажите ширину" id="width">
+                                {% elseif addonType == 'box' %}
+                                    <label for="size">Размер</label>
+                                    <input type="text" name="addons[{{ addon.id }}][size]" value="{{ addon.size }}" placeholder="Укажите размер" id="size">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <a href="{{ path('atrophy_bone_addon', { 'addonType': addonType, 'action': "remove", 'addonId': addon.id }) }}" class="delete confirm fa fa-times"></a>
+                    </div>
+                {% else %}
+                    <p class="empty">В каталоге нет дополнений этой категории</p>
+                {% endfor %}
+                <div class="wrap circleGradient addMore">
+                    <a href="{{ path('atrophy_bone_addon', { 'addonType': addonType, 'action': "add"}) }}" class="fa fa-plus-square"></a>
+                </div>
+            </form>
+            {% if addons %}
+                <button type="submit" form="addOns">Сохранить</button>
+            {% endif %}
+            <div class="confirmArea">
+                <span class="choose fa fa-trash-o" data-choice="true"></span>
+                <span class="choose fa fa-times-circle-o" data-choice="false"></span>
+            </div>
+        </section>
+    </div>
+    {% include 'ATrophyBoneBundle:Common:footer.html.twig' %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{{ asset('bundles/atrophybone/js/lib/confirmation.js') }}"></script>
+    <script>
+        $(function() {
+            confirm.init();
+        });
+    </script>
+{% endblock %}

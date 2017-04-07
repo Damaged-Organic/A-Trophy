@@ -1,0 +1,48 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Page/search.html.twig #}
+{% extends 'ATrophyMeatBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/jquery-ui.theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/scrollpane.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/atrophymeat/css/store.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content extraP clear store searchPage">
+        <div class="inner">
+            {% if products is not empty %}
+                <h2 class="darkGray results">
+                    Результаты поиска по запросу <span class="stableSize orange">{{ searchString|escape }}</span>:
+                </h2>
+            {% endif %}
+            <div id="goodsGrid" class="clear">
+                {% render controller('ATrophyMeatBundle:ShopPageData:catalogGrid', { 'products': products }) %}
+            </div>
+            {% if products is not empty %}
+                <div class="navigation">
+                    {% render controller('ATrophyMeatBundle:CommonPageData:paginationBar') %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/atrophymeat/js/extensions.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/atrophymeat/js/header.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_init %}
+    <script>
+        $.webshims.polyfill();
+
+        $(function(){
+
+            header.init();
+            search.init();
+        });
+    </script>
+{% endblock %}

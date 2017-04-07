@@ -1,0 +1,13 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/CommonPageData/promotions.html.twig #}
+{% if promotions %}
+<div id="sale" class="flexy bs mb10 clear borderLightGray">
+    <ul class="flexyHolder">
+        {% for promotion in promotions %}
+            <li class="flexySlide"><img src="{{ asset('bundles/atrophymeat/images/slider/' ~ promotion.image) }}" alt="{{ promotion.image }}"></li>
+        {% endfor %}
+    </ul>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('atrophy_bone_promo') }}" class="editable fa fa-pencil-square" target="_blank"></a>
+    {% endif %}
+</div>
+{% endif %}

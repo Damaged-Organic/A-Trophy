@@ -1,0 +1,36 @@
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/faqAdd.html.twig #}
+{% extends 'ATrophyBoneBundle::layout.html.twig' %}
+
+{% set title = "Редактирование пункта \"Вопрос-ответ\"" %}
+
+{% block head %}
+    <title>{{ title }} - DEM</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="{{ asset('bundles/atrophybone/images/favicon.png') }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/faq.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page">
+        {% include 'ATrophyBoneBundle:Common:header.html.twig' with { 'title': title } only %}
+        <section class="content faqZone">
+            <form action="{{ path('atrophy_bone_faq', { 'faqId': 0, 'action': "create" }) }}" method="POST" id="faq" autocomplete="off">
+                <div class="wrap circleGradient">
+                    <label for="question">Вопрос</label>
+                    <textarea name="faq[question]" id="question" placeholder="Введите текст вопроса"></textarea>
+                    <label for="answer">Ответ</label>
+                    <textarea name="faq[answer]" id="answer" placeholder="Введите ответ на вопрос"></textarea>
+                </div>
+                <button type="submit">сохранить</button>
+            </form>
+        </section>
+    </div>
+    {% include 'ATrophyBoneBundle:Common:footer.html.twig' %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+{% endblock %}

@@ -1,0 +1,69 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ faq start 											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.content.faq{
+	background: url(../images/faq/faq-bg.jpg) repeat;
+}
+.content.faq h1{
+	margin-top: 20px;
+}
+#roll{
+	width: 100%;
+	margin: 40px 0 20px;
+	overflow: hidden;
+}
+#roll .item{
+    position: relative;
+	margin-bottom: 20px;
+}
+#roll .panel{
+	width: 100%;
+	overflow: hidden;
+}
+#roll .panel:before{
+	display: block;
+	width: 40px;
+	font-family: "Roboto Condensed", sans-serif;
+	content: "Q:";
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	float: left;
+	margin-right: 20px;
+	overflow: hidden;
+}
+#roll .answer{
+	height: 0;
+	-webkit-transform: scale(1, 0) translateY(-100%);
+	-ms-transform: scale(1, 0) translateY(-100%);
+	-o-transform: scale(1, 0) translateY(-100%);
+	transform: scale(1, 0) translateY(-100%);
+}
+#roll .item.active .answer{
+	height: auto;
+	-webkit-transform: scale(1) translateY(0%);
+	-ms-transform: scale(1) translateY(0%);
+	-o-transform: scale(1) translateY(0%);
+	transform: scale(1) translateY(0%);
+}
+#roll .answer:before{
+	content: "A:";
+}
+#roll a{
+	display: inline-block;
+    max-width: 94%;
+	font-size: 1.125em;
+	text-align: left;
+	margin-top: 12px;
+}
+#roll .item.active a{
+	color: #cc5200;
+}
+#roll p{
+	display: inline-block;
+	margin-top: 15px;
+	max-width: 93%;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~ faq end 											 ~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

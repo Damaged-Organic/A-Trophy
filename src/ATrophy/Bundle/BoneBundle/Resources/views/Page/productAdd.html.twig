@@ -1,0 +1,106 @@
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/productAdd.html.twig #}
+{% extends 'ATrophyBoneBundle::layout.html.twig' %}
+
+{% set title = "Добавление товарной позиции" %}
+
+{% block head %}
+    <title>{{ title }} - DEM</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="{{ asset('bundles/atrophybone/images/favicon.png') }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/goodModel.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page">
+        {% include 'ATrophyBoneBundle:Common:header.html.twig' with { 'title': title } only %}
+        <section class="content goodModelZone">
+            <form action="{{ path('atrophy_bone_product', { 'productId': 0, 'action': "create" }) }}" id="goodModel" method="POST" enctype="multipart/form-data">
+                <div class="wrap circleGradient">
+                    <div class="photo">
+                        <figure>
+                            <img src="{{ asset('bundles/atrophymeat/images/placeholders/no_photo_item.jpg') }}" alt="No-photo">
+                        </figure>
+                        <input type="file" name="file[image]" value="" id="modelPhoto">
+                        <label for="modelPhoto">Выбрать фотографию</label>
+                    </div>
+                    <div class="fieldsArea">
+                        <label for="modelName">Название товара</label>
+                        <input type="text" name="product[title]" value="" placeholder="Введите название товара" id="modelName">
+                        <label for="theme">Выберите тематику</label>
+                        <select name="product[thematic]" id="theme" class="selecMenu">
+                            {% for thematic in thematics %}
+                                <option value="{{ thematic.id }}">{{ thematic.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="category">Выберите категорию</label>
+                        <select name="product[category]" id="category" class="selecMenu">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="subCategory">Выберите подкатегорию</label>
+                        <select name="product[subCategory]" id="subCategory" class="selecMenu">
+                            {% for subCategory in subCategories %}
+                                <option value="{{ subCategory.id }}">{{ subCategory.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="row several">
+                            <div class="row">
+                                <label for="modelViews">Просмотры</label>
+                                <input type="text" name="product[views]" value="" placeholder="Количество просмотров" id="modelViews">
+                            </div>
+                            <div class="row">
+                                <label for="modelRating">Рейтинг</label>
+                                <input type="text" name="product[ratingScore]" value="" placeholder="Текущий рейтинг" id="modelRating">
+                            </div>
+                            <div class="row">
+                                <label for="modelVotes">Проголосовало</label>
+                                <input type="text" name="product[ratingVotes]" value="" placeholder="Количество голосов" id="modelVotes">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="setPrice">Цена комплекта</label>
+                            <input type="text" name="product[kitPrice]" value="" placeholder="Введите цену комплекта" id="setPrice">
+                            <input type="checkbox" name="product[isVisible]" value="yes" id="visible">
+                            <label for="visible">Отображать в каталоге</label>
+                        </div>
+                    </div>
+                    <div class="row addOns">
+                        <h2>Список доступных дополнений: </h2>
+                        <input type="checkbox" name="productAddon[hasStatuette]" value="yes" id="statuette">
+                        <label for="statuette">Статуэтка</label>
+                        <input type="checkbox" name="productAddon[hasTopToken]" value="yes" id="topToken">
+                        <label for="topToken">Жетонодержатель</label>
+                        <input type="checkbox" name="productAddon[hasRibbon]" value="yes" id="ribbon">
+                        <label for="ribbon">Лента</label>
+                        <input type="checkbox" name="productAddon[hasToken]" value="yes" id="token">
+                        <label for="token">Жетон</label>
+                        <input type="checkbox" name="productAddon[hasPlate]" value="yes" id="plate">
+                        <label for="plate">Шильдик</label>
+                        <input type="checkbox" name="productAddon[hasBox]" value="yes" id="box">
+                        <label for="box">Шкатулка</label>
+                        <input type="checkbox" name="productAddon[hasEtching]" value="yes" id="etching">
+                        <label for="etching">Гравировка</label>
+                    </div>
+                </div>
+                <button type="submit">Сохранить</button>
+            </form>
+        </section>
+    </div>
+    {% include 'ATrophyBoneBundle:Common:footer.html.twig' %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script>
+        $(function(){
+            $(".selecMenu").selectmenu();
+        });
+    </script>
+{% endblock %}

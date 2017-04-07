@@ -1,0 +1,210 @@
+{# src/ATrophy/Bundle/BoneBundle/Resources/views/Page/productEdit.html.twig #}
+{% extends 'ATrophyBoneBundle::layout.html.twig' %}
+
+{% set title = "Редактирование товарной позиции" %}
+
+{% block head %}
+    <title>{{ title }} - DEM</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="{{ asset('bundles/atrophybone/images/favicon.png') }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/atrophybone/css/goodModel.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page">
+        {% include 'ATrophyBoneBundle:Common:header.html.twig' with { 'title': title } only %}
+        <section class="content goodModelZone">
+            <form action="{{ path('atrophy_bone_product', { 'productId': product.id, 'action': "update" }) }}" id="goodModel" method="POST" enctype="multipart/form-data">
+                <div class="wrap circleGradient">
+                    <div class="photo">
+                        <input type="hidden" name="product[image]" value="{{ product.image }}">
+                        <input type="hidden" name="product[imageSquare]" value="{{ product.imageSquare }}">
+                        <input type="hidden" name="product[imageThumb]" value="{{ product.imageThumb }}">
+                        <figure>
+                            {% set assetPath = 'bundles/atrophymeat/images/store/products/' ~ product.id ~ '/' %}
+                            {% set assetFile = asset_exists(assetPath ~ product.imageThumb) ? assetPath ~ product.imageThumb : 'bundles/atrophymeat/images/placeholders/no_photo_item.jpg' %}
+                            <img src="{{ asset(assetFile) }}" alt="{{ product.imageThumb }}">
+                        </figure>
+                        <input type="file" name="file[image]" value="" id="modelPhoto">
+                        <label for="modelPhoto">Выбрать фотографию</label>
+                        <a href="{{ path('atrophy_bone_product', { 'productId': product.id, 'action': "delete_picture" }) }}" class="delete confirm fa fa-times"></a>
+                    </div>
+                    <div class="fieldsArea">
+                        <label for="modelName">Наименование товара</label>
+                        <input type="text" name="product[title]" value="{{ product.title }}" placeholder="Введите название товара" id="modelName">
+                        <label for="theme">Выберите тематику</label>
+                        <select name="product[thematic]" id="theme" class="selecMenu">
+                            {% for thematic in thematics %}
+                                <option value="{{ thematic.id }}" {{ ( thematic == product.thematic ) ? 'selected' : '' }}>{{ thematic.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="category">Выберите категорию</label>
+                        <select name="product[category]" id="category" class="selecMenu">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}" {{ ( category == product.category ) ? 'selected' : '' }}>{{ category.title }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if product.subCategory %}
+                            <label for="subCategory">Выберите подкатегорию</label>
+                            <select name="product[subCategory]" id="subCategory" class="selecMenu">
+                                {% for subCategory in subCategories %}
+                                    <option value="{{ subCategory.id }}" {{ ( subCategory == product.subCategory ) ? 'selected' : '' }}>{{ subCategory.title }}</option>
+                                {% endfor %}
+                            </select>
+                        {% endif %}
+                        <div class="row several">
+                            <div class="row">
+                                <label for="modelViews">Просмотры</label>
+                                <input type="text" name="product[views]" value="{{ product.views }}" placeholder="Количество просмотров" id="modelViews">
+                            </div>
+                            <div class="row">
+                                <label for="modelRating">Рейтинг</label>
+                                <input type="text" name="product[ratingScore]" value="{{ product.ratingScore }}" placeholder="Текущий рейтинг" id="modelRating">
+                            </div>
+                            <div class="row">
+                                <label for="modelVotes">Проголосовало</label>
+                                <input type="text" name="product[ratingVotes]" value="{{ product.ratingVotes }}" placeholder="Количество голосов" id="modelVotes">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="setPrice">Цена комплекта</label>
+                            <input type="text" name="product[kitPrice]" value="{{ ( product.kitPrice ) ? product.kitPrice : '' }}" placeholder="Введите цену комплекта" id="setPrice">
+                            <input type="checkbox" name="product[isVisible]" value="yes" id="visible" {{ ( product.isVisible ) ? 'checked' : '' }}>
+                            <label for="visible">Отображать в каталоге</label>
+                        </div>
+                    </div>
+                    <div class="row addOns">
+                        <h2>Список доступных дополнений: </h2>
+                        <input type="checkbox" name="productAddon[hasStatuette]" value="yes" id="statuette"
+                               {{ ( product.productAddon.hasStatuette ) ? 'checked' : '' }}>
+                        <label for="statuette">Статуэтка</label>
+                        <input type="checkbox" name="productAddon[hasTopToken]" value="yes" id="topToken"
+                               {{ ( product.productAddon.hasTopToken ) ? 'checked' : '' }}>
+                        <label for="topToken">Жетонодержатель</label>
+                        <input type="checkbox" name="productAddon[hasRibbon]" value="yes" id="ribbon"
+                               {{ ( product.productAddon.hasRibbon ) ? 'checked' : '' }}>
+                        <label for="ribbon">Лента</label>
+                        <input type="checkbox" name="productAddon[hasToken]" value="yes" id="token"
+                               {{ ( product.productAddon.hasToken ) ? 'checked' : '' }}>
+                        <label for="token">Жетон</label>
+                        <input type="checkbox" name="productAddon[hasPlate]" value="yes" id="plate"
+                               {{ ( product.productAddon.hasPlate ) ? 'checked' : '' }}>
+                        <label for="plate">Шильдик</label>
+                        <input type="checkbox" name="productAddon[hasBox]" value="yes" id="box"
+                               {{ ( product.productAddon.hasBox ) ? 'checked' : '' }}>
+                        <label for="box">Шкатулка</label>
+                        <input type="checkbox" name="productAddon[hasEtching]" value="yes" id="etching"
+                               {{ ( product.productAddon.hasEtching ) ? 'checked' : '' }}>
+                        <label for="etching">Гравировка</label>
+                    </div>
+                    <a href="{{ path('atrophy_bone_product', { 'productId': product.id, 'action': "add" }) }}" class="addRow fa fa-plus-square">Добавить товар</a>
+                </div>
+
+                {% for productItem in product.productItem %}
+                    <div class="wrap circleGradient unit">
+                        <div class="photo small">
+                            <input type="hidden" name="productItem[{{ productItem.id }}][image]" value="{{ productItem.itemImage[0].image }}">
+                            <input type="hidden" name="productItem[{{ productItem.id }}][imageSquare]" value="{{ productItem.itemImage[0].imageSquare }}">
+                            <input type="hidden" name="productItem[{{ productItem.id }}][imageThumb]" value="{{ productItem.itemImage[0].imageThumb }}">
+                            <figure>
+                                {% set assetPath = 'bundles/atrophymeat/images/store/products/' ~ product.id ~ '/' %}
+                                {% set assetFile = asset_exists(assetPath ~ productItem.itemImage[0].imageThumb) ? assetPath ~ productItem.itemImage[0].imageThumb : 'bundles/atrophymeat/images/placeholders/no_photo_item.jpg' %}
+                                <img src="{{ asset(assetFile) }}" alt="{{ productItem.itemImage[0].imageThumb }}">
+                            </figure>
+                            <input type="file" name="file[images][{{ productItem.id }}]" value="" id="unitPhoto_{{ productItem.id }}">
+                            <label for="unitPhoto_{{ productItem.id }}">Выбрать фотографию</label>
+                        </div>
+                        <div class="fieldsArea small">
+                            <label for="unitName">Артикул модели</label>
+                            <input type="text" name="productItem[{{ productItem.id }}][article]" value="{{ productItem.article }}" placeholder="Введите артикул модели" id="unitName">
+                            <div class="row several">
+                                <div class="row">
+                                    <label for="unitPrice">Цена</label>
+                                    <input type="text" name="productItem[{{ productItem.id }}][price]" value="{{ ( productItem.price is not null ) ? productItem.price : '' }}" placeholder="Цена" id="unitPrice">
+                                </div>
+                                <div class="row">
+                                    <label for="unitStockPrice">Акционная цена</label>
+                                    <input type="text" name="productItem[{{ productItem.id }}][pricePromo]" value="{{ ( productItem.pricePromo is not null ) ? productItem.pricePromo : '' }}" placeholder="Акционная цена" id="unitStockPrice">
+                                </div>
+                                {% if product.subCategory.id == 10 %}
+                                    <div class="row">
+                                        <label for="standLessPrice">Цена без подставки</label>
+                                        <input type="text" name="productSpecification[{{ productItem.id }}][stand]" value="{{ ( productItem.itemSpecification.stand is not null ) ? productItem.itemSpecification.stand : '' }}" placeholder="Цена без подставки" id="standLessPrice">
+                                    </div>
+                                {% endif %}
+                                {% if product.category.id == 1 %}
+                                    <div class="row">
+                                        <label for="holderPrice">Цена жетонодержателя</label>
+                                        <input type="text" name="productSpecification[{{ productItem.id }}][holder]" value="{{ ( productItem.itemSpecification.holder is not null ) ? productItem.itemSpecification.holder : '' }}" placeholder="Цена жетонодержателя" id="holderPrice">
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="row">
+                                <input type="checkbox" name="productItem[{{ productItem.id }}][stock]" value="yes" id="unitStock_{{ productItem.id }}" {{ ( productItem.stock ) ? 'checked' : '' }}>
+                                <label for="unitStock_{{ productItem.id }}">В наличии</label>
+                            </div>
+                        </div>
+                        <table>
+                            <tr>
+                                <th>Цвет</th>
+                                <th>Оттенок</th>
+                                <th>Высота</th>
+                                <th>Диаметр (чаша)</th>
+                                <th>Диаметр (медаль)</th>
+                                <th>Диаметр (жетон)</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="productSpecification[{{ productItem.id }}][color]" value="{{ productItem.itemSpecification.color }}" placeholder="Цвет модели">
+                                </td>
+                                <td>
+                                    <input type="text" name="productSpecification[{{ productItem.id }}][colorTouch]" value="{{ productItem.itemSpecification.colorTouch }}" placeholder="Оттенок модели">
+                                </td>
+                                <td>
+                                    <input type="text" name="productSpecification[{{ productItem.id }}][height]" value="{{ productItem.itemSpecification.height }}" placeholder="Высота модели">
+                                </td>
+                                <td>
+                                    <input type="text" name="productSpecification[{{ productItem.id }}][diameterGoblet]" value="{{ productItem.itemSpecification.diameterGoblet }}" placeholder="Даметр чаши">
+                                </td>
+                                <td>
+                                    <input type="text" name="productSpecification[{{ productItem.id }}][diameterMedal]" value="{{ productItem.itemSpecification.diameterMedal }}" placeholder="Диаметр медали">
+                                </td>
+                                <td>
+                                    <input type="text" name="productSpecification[{{ productItem.id }}][diameterToken]" value="{{ productItem.itemSpecification.diameterToken }}" placeholder="Диаметр жетона">
+                                </td>
+                            </tr>
+                        </table>
+                        <a href="{{ path('atrophy_bone_product', { 'productId': productItem.id, 'action': "remove" }) }}" class="delete confirm fa fa-times"></a>
+                    </div>
+                {% endfor %}
+
+                <button type="submit">Сохранить</button>
+            </form>
+            <div class="dangerArea">
+                <hr><a href="{{ path('atrophy_bone_product', { 'productId': product.id, 'action': "delete" }) }}" class="delete confirm">удалить</a><hr>
+            </div>
+        </section>
+        <div class="confirmArea">
+            <span class="choose fa fa-trash-o" data-choice="true"></span>
+            <span class="choose fa fa-times-circle-o" data-choice="false"></span>
+        </div>
+    </div>
+    {% include 'ATrophyBoneBundle:Common:footer.html.twig' %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="{{ asset('bundles/atrophybone/js/lib/confirmation.js') }}"></script>
+    <script>
+        $(function(){
+            $(".selecMenu").selectmenu();
+            confirm.init();
+        });
+    </script>
+{% endblock %}

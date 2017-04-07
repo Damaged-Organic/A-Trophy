@@ -1,0 +1,35 @@
+{# ATrophy/Bundle/MeatBundle/Resources/views/ShopPageData/sortingFilter.html.twig #}
+<section class="panel bs">
+    <h2 class="darkGray">Сортировки</h2>
+    <input type="radio" name="sorting" value="alphabetAsc" id="alphabetDown"
+           {% if sorting_parameter == 'alphabetAsc' %}checked="checked"{% endif %}>
+    <label for="alphabetDown" class="fa fa-circle darkGray orangeHover pseudoGray easeInOutQuad">по алфавиту от А - Я</label>
+
+    <input type="radio" name="sorting" value="alphabetDesc" id="alphabetUp"
+           {% if sorting_parameter == 'alphabetDesc' %}checked="checked"{% endif %}>
+    <label for="alphabetUp" class="fa fa-circle darkGray orangeHover pseudoGray easeInOutQuad">по алфавиту от Я - А</label>
+
+    <input type="radio" name="sorting" value="priceAsc" id="priceUp"
+           {% if sorting_parameter == 'priceAsc' %}checked="checked"{% endif %}>
+    <label for="priceUp" class="fa fa-circle darkGray orangeHover pseudoGray easeInOutQuad">по возрастанию цены</label>
+
+    <input type="radio" name="sorting" value="priceDesc" id="priceDown"
+           {% if sorting_parameter == 'priceDesc' %}checked="checked"{% endif %}>
+    <label for="priceDown" class="fa fa-circle darkGray orangeHover pseudoGray easeInOutQuad">по убыванию цены</label>
+
+    <input type="radio" name="sorting" value="ratingAsc" id="ratingUp"
+           {% if sorting_parameter == 'ratingAsc' %}checked="checked"{% endif %}>
+    <label for="ratingUp" class="fa fa-circle darkGray orangeHover pseudoGray easeInOutQuad">популярные в начале</label>
+
+    <input type="radio" name="sorting" value="ratingDesc" id="ratingDown"
+           {% if sorting_parameter == 'ratingDesc' %}checked="checked"{% endif %}>
+    <label for="ratingDown" class="fa fa-circle darkGray orangeHover pseudoGray easeInOutQuad">популярные в конце</label>
+
+    <input type="radio" name="sorting" value="newestAsc" id="newestUp"
+           {% if sorting_parameter == 'newestAsc' %}checked="checked"{% endif %}>
+    <label for="newestUp" class="fa fa-circle darkGray orangeHover pseudoGray easeInOutQuad">новые в начале</label>
+
+    <input type="radio" name="sorting" value="newestDesc" id="newestDown"
+           {% if sorting_parameter == 'newestDesc' %}checked="checked"{% endif %}>
+    <label for="newestDown" class="fa fa-circle darkGray orangeHover pseudoGray easeInOutQuad mb15">новые в конце</label>
+</section>

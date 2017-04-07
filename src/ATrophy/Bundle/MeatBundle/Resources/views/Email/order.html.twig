@@ -1,0 +1,462 @@
+{# src/ATrophy/Bundle/MeatBundle/Resources/views/Email/order.html.twig #}
+{% trans_default_domain 'feedback' %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Your Message Subject or Title</title>
+    <style type="text/css">
+        #outlook a{
+            padding:0;
+        }
+        body{
+            width:100% !important;
+            -webkit-text-size-adjust:100%;
+            -ms-text-size-adjust:100%;
+            margin:0;
+            padding:0;
+        }
+        .ExternalClass{
+            width:100%;
+        }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass td,
+        .ExternalClass div{
+            line-height: 100%;
+        }
+        #backgroundTable{
+            margin:0;
+            padding:0;
+            width:100% !important;
+            line-height: 100% !important;
+        }
+
+        img{
+            outline:none;
+            text-decoration:none;
+            -ms-interpolation-mode: bicubic;
+        }
+        a img {
+            border:none;
+        }
+        .image_fix {
+            display:block;
+        }
+
+        p{
+            margin: 0.75em 0;
+        }
+
+        h1{
+            color: #cc5200 !important;
+        }
+        h2, h3, h4, h5, h6{
+            color: #363636 !important;
+        }
+        h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
+            color: blue !important;
+        }
+        h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {
+            color: red !important;
+        }
+        h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited{
+            color: purple !important;
+        }
+        table td{
+            border-collapse: collapse;
+        }
+        table{
+            border-collapse:collapse;
+            mso-table-lspace:0pt;
+            mso-table-rspace:0pt;
+        }
+        a{
+            color: orange;
+        }
+
+        #top-bar{
+            border-radius: 5px 5px 0 0;
+        }
+        #footer{
+            border-radius: 0px 0px 5px 5px;
+        }
+        table.bordered{
+            border-collapse: collapse !important;
+            border: 1px solid #d7d7d7 !important;
+        }
+        table td[class=w20]{
+            width: 20px !important;
+        }
+        table td[class=w80]{
+            width: 80px !important;
+        }
+        table td[class=w215]{
+            width: 215px !important;
+        }
+        table[class=w400], table td[class=w400]{
+            width: 400px !important;
+        }
+        table td[class=w480]{
+            width: 480px !important;
+        }
+        table[class=w600], table td[class=w600]{
+            width: 600px !important;
+        }
+
+        @media only screen and (max-width: 600px){
+            table, table[class=w600]{
+                width: 100% !important;
+            }
+            table td[class=w80]{
+                width: 120px !important;
+            }
+            table td[class=w215]{
+                width: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--wrapper start-->
+<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" bgcolor="#fff">
+<!--template gap start-->
+<tr>
+    <td>
+        <table cellpadding="0" cellspacing="0" border="0" align="center" width="600" class="w600">
+            <tr>
+                <td height="20" class="h20"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!--template gap end-->
+<!--header lane start-->
+<tr>
+    <td>
+        <table id="top-bar" cellpadding="0" cellspacing="0" border="0" align="center" class="w600" width="600" bgcolor="#cc5200">
+            <tr><td height="10" class="h10" colspan="4"></td></tr>
+            <tr>
+                <td width="20" class="w20"></td>
+                <td width="480" class="w480">
+                    <!--<a href="{{ url('atrophy_meat_homepage') }}" title="{{ 'unsubscribe'|trans }}" style="font-family: Arial; color: #fff; text-decoration: none; font-size: 12px;">{{ 'unsubscribe'|trans }}</a>-->
+                </td>
+                <td width="20" class="w20"></td>
+            </tr>
+            <tr><td height="10" class="h10" colspan="4"></td></tr>
+        </table>
+    </td>
+</tr>
+<!--header lane end-->
+<!--header logo start-->
+<tr>
+    <td>
+        <table cellpadding="0" cellspacing="0" border="0" align="center" class="w600" width="600" bgcolor="#d7d7d7">
+            <tr>
+                <td height="20" class="h20"></td>
+            </tr>
+            <tr>
+                <td class="w215" width="215" align="center">
+                    <img class="image_fix" src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/atrophymeat/images/logo.png') }}" alt="A-Trophy logo" title="A-Trophy logo" width="64" height="41"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h1 style="font-family: Arial; color: #f77462; font-size: 20px; text-align: center;">{{ 'shop'|trans }}</h1>
+                </td>
+            </tr>
+            <tr>
+                <td height="20" class="h20"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!--header logo end-->
+<!--content start-->
+<tr>
+    <td>
+        <table cellpadding="0" cellspacing="0" border="0" align="center" class="w600" width="600" bgcolor="#fff">
+            <tr>
+                <td>
+					{% if addressee == 'ADMIN' %}
+						<h1 style="font-family: Arial; color: #cc5200; font-size: 18px; text-align: center;">Пользователь сделал заказ в Интернет-магазине "A-Trophy"</h1>
+					{% else %}
+						<h1 style="font-family: Arial; color: #cc5200; font-size: 18px; text-align: center;">Вы сделали заказ в Интернет-магазине "A-Trophy"</h1>
+					{% endif %}
+					{% if addressee == 'ADMIN' %}
+						<p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Пользователь сделал новый заказ. Его контактные данные, пожелания касательно отправки, а также список товаров и дополнений к ним представлен ниже. Заказчик также получит копию письма в надлежащем формате.</p>
+                    {% else %}
+						<p style="font-family: Arial; color: #363636; font-size: 14px; text-align: left;">Вы сделали новый заказ. Ваши контактные данные, пожелания касательно отправки, а также список товаров и дополнений к ним представлен ниже. Мы рассмотрим ваш заказ и свяжемся с вами в ближайшее время. Если же сообщение доставлено вам по ошибке, пожалуйста, удалите его.</p>
+					{% endif %}
+					<p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Номер заказа: <b>{{ order.orderId[:2] ~ '-' ~ order.orderId[2:3] ~ '-' ~ order.orderId[5:] }}</b></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellpadding="0" cellspacing="0" border="1px" bordercolor="#ccc" bgcolor="#fff" width="600">
+                        <tr bgcolor="#efefef">
+                            <td>
+                                <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Имя</p>
+                            </td>
+                            <td>
+                                <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">{{ order.clientName }}</p>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#fff">
+                            <td>
+                                <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Email</p>
+                            </td>
+                            <td>
+                                <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">{{ order.clientEmail }}</p>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#efefef">
+                            <td>
+                                <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Телефон</p>
+                            </td>
+                            <td>
+                                <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">{{ order.clientPhone }}</p>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#fff">
+                            <td>
+                                <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Доставка</p>
+                            </td>
+                            <td>
+                                <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">
+                                    {{ ( order.deliveryType == 'shopDelivery' ) ? 'Требуется' : 'Не требуется' }}
+                                </p>
+                            </td>
+                        </tr>
+                        {% if order.deliveryType == 'shopDelivery' %}
+                            <tr bgcolor="#efefef">
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Область</p>
+                                </td>
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">{{ order.deliveryRegion }}</p>
+                                </td>
+                            </tr>
+                            <tr bgcolor="#fff">
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Город</p>
+                                </td>
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">{{ order.deliveryCity }}</p>
+                                </td>
+                            </tr>
+                            <tr bgcolor="#efefef">
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Адрес</p>
+                                </td>
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">{{ order.deliveryAddress }}</p>
+                                </td>
+                            </tr>
+                            <tr bgcolor="#fff">
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Транспортная компания</p>
+                                </td>
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">
+                                        {% if order.deliveryService == 'newPost' %}
+                                            Новая Почта
+                                        {% elseif order.deliveryService == 'gunsel' %}
+                                            Гюнсел
+                                        {% elseif order.deliveryService == 'inTime' %}
+                                            Интайм
+                                        {% endif %}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr bgcolor="#efefef">
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Номер отделения</p>
+                                </td>
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">{{ order.serviceOffice }}</p>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </td>
+            </tr>
+            <tr><td height="20" class="h20"></td></tr>
+            {% set priceTotal = 0.00 %}
+            {% for itemKey, orderItem in orderItems %}
+                <tr>
+                    <td>
+                        <table cellpadding="0" cellspacing="0" border="0" align="center" class="w600" width="600" bgcolor="#fff">
+                            <tr style="border-bottom: 1px solid #d7d7d7;">
+                                <td>
+                                    {% set itemTitle = orderProducts[orderItem.productId]['title'] %}
+									<h2 style="font-family: Arial; color: #363636; font-size: 16px; text-align: left;">
+										<span style="font-family: Arial; color: #363636; font-size: 14px; text-align: left;">Товар №{{ loop.index }}:</span> "{{ itemTitle }}"
+									</h2>
+                                </td>
+                                <td>
+                                    <p style="font-family: Arial; color: #363636; font-size: 14px; text-align: right;">
+                                        {% if orderItem.item == 'kit' %}
+                                            {% set itemArticle = 'Комплект' %}
+                                        {% else %}
+                                            {% set itemArticle = orderProducts[orderItem.productId]['productItem'][orderItem.item]['article'] %}
+                                        {% endif %}
+                                        Артикул: <span style="font-family: Arial; color: #cc5200; font-size: 14px; text-align: center;">{{ itemArticle }}</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                {% if orderItem.item == 'kit' %}
+                                    {% set itemImage = orderProducts[orderItem.productId]['imageThumb'] %}
+                                {% else %}
+                                    {% set itemImage = orderProducts[orderItem.productId]['productItem'][orderItem.item]['itemImage'] %}
+                                {% endif %}
+                                {% set assetFile = 'bundles/atrophymeat/images/store/products/' ~ orderItem.productId ~ '/' ~ itemImage %}
+                                {% set assetFile = asset_exists(assetFile) ? assetFile : 'bundles/atrophymeat/images/placeholders/no_photo_item_thumb.jpg' %}
+                                <td valign="middle" width="350">
+                                    <img src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset(assetFile) }}" alt="{{ orderItem.productId }}" class="image_fix" width="250" height="150" style="margin: 10px auto;"/>
+                                </td>
+                                <td valign="middle" width="250">
+                                    <p style="font-family: Arial; color: #cc5200; font-size: 14px; text-align: center; padding: 0 10px;">
+                                        Количество: <span style="font-family: Arial; color: #363636; font-size: 14px;">{{ orderItem.quantity }}</span>
+                                    </p>
+                                    {% if orderItem.item == 'kit' %}
+                                        {% set itemsNumber = orderProducts[orderItem.productId]['productItem']|length %}
+                                        <p style="font-family: Arial; color: #cc5200; font-size: 14px; text-align: center; padding: 0 10px;">
+                                            Комплект
+                                        </p>
+                                        <p style="font-family: Arial; color: #cc5200; font-size: 14px; text-align: center; padding: 0 10px;">
+                                            <span style="font-family: Arial; color: #363636; font-size: 14px;">из {{ itemsNumber }} моделей</span>
+                                        </p>
+                                    {% else %}
+                                        {% set itemSpecifications = orderProducts[orderItem.productId]['productItem'][orderItem.item]['itemSpecification'] %}
+                                        {% for specificationKey, specification in itemSpecifications %}
+                                            <p style="font-family: Arial; color: #cc5200; font-size: 14px; text-align: center; padding: 0 10px;">
+                                                {{ (specificationKey ~ '.name')|trans({},'specifications') }}: <span style="font-family: Arial; color: #363636; font-size: 14px;">{{ specification|floatval }} {{ (specificationKey ~ '.measure')|trans({},'specifications') }}</span>
+                                            </p>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% if orderItem.item == 'kit' %}
+                                        {% set priceCurrent = orderProducts[orderItem.productId]['kitPrice'] %}
+                                    {% else %}
+                                        {% set price = orderProducts[orderItem.productId]['productItem'][orderItem.item]['price'] %}
+                                        {% set pricePromo = orderProducts[orderItem.productId]['productItem'][orderItem.item]['pricePromo'] %}
+                                        {% set priceCurrent = ( pricePromo ) ? pricePromo : price %}
+                                    {% endif %}
+									{% set priceSubtotal = (priceCurrent + orderItem.addonsPrice) * orderItem.quantity %}
+									{% set priceTotal = priceTotal + priceSubtotal %}
+                                    <p style="font-family: Arial; color: #cc5200; font-size: 24px; font-weight: bold; text-align: center;">{{ priceSubtotal|number_format(2) }} UAH</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                {% if orderItem.addons %}
+                    <tr>
+                        <td>
+                            <h2 style="font-family: Arial; color: #363636; font-size: 14px; text-align: center;">Дополнения для товара "{{ itemTitle }}":</h2>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% for addonName, addon in orderItem.addons %}
+                    <tr style="border-bottom: 1px solid #d7d7d7;">
+                        <td>
+                            <table cellpadding="0" cellspacing="0" border="0" align="center" class="w600" width="600" bgcolor="#fff">
+                                <tr bgcolor="#f7f7f7">
+                                    <td width="100">
+                                        {% set assetFile = asset_exists(addon.image) ? addon.image : 'bundles/atrophymeat/images/placeholders/no_photo_addon_thumb.jpg' %}
+                                        <img src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset(assetFile) }}" alt="{{ addonName }}" class="image_fix" width="80" height="80" style="margin: 10px;"/>
+                                    </td>
+                                    <td>
+                                        <h3 style="font-family: Arial; color: #363636; font-size: 14px; text-align: left; padding: 0 10px;">{{ ( addon.data.title is defined ) ? addon.data.title : addon.name }}</h3>
+                                    </td>
+                                    <td valign="middle" width="150">
+                                        <p style="font-family: Arial; color: #cc5200; font-size: 18px; font-weight: bold; text-align: center;">{{ addon.price }} UAH</p>
+                                    </td>
+                                </tr>
+								{% if addon.data.imageName is defined and addon.data.imageName is not empty %}
+									<tr bgcolor="#f7f7f7">
+										<td colspan="3">
+											<p style="font-family: Arial; color: #cc5200; font-size: 14px; font-weight: bold; text-align: left; padding: 0 10px;">Ссылка на изображение:
+												<span style="font-family: Arial; color: #363636; font-size: 14px; font-weight: normal;">
+													<a href="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('bundles/atrophymeat/images/' ~ addon.data.image) }}">{{ addon.data.imageName }}
+												</span>
+											</p>
+										</td>
+									</tr>
+								{% endif %}
+								{% if addon.data.text is defined and addon.data.text is not empty %}
+									<tr bgcolor="#f7f7f7">
+										<td colspan="3">
+											<p style="font-family: Arial; color: #cc5200; font-size: 14px; font-weight: bold; text-align: left; padding: 0 10px;">Текст гравировки:
+												<span style="font-family: Arial; color: #363636; font-size: 14px; font-weight: normal;">
+													{{ addon.data.text }}
+												</span>
+											</p>
+										</td>
+									</tr>
+								{% endif %}
+                            </table>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+            <tr><td height="20" class="h20"></td></tr>
+            <tr>
+                <td>
+                    <p style="font-family: Arial; color: #5c5c5c; font-size: 14px; text-align: right;">
+                        {% if addressee == 'ADMIN' %}
+							Общая сумма заказа:
+						{% else %}
+							Вы заказали на сумму:
+						{% endif %}
+						<span style="font-family: Arial; color: #f77462; font-size: 18px;">{{ priceTotal|number_format(2) }} UAH</span>
+                    </p>
+                    <p style="font-family: Arial; color: #5c5c5c; font-size: 14px; text-align: right;">
+                        {% if addressee != 'ADMIN' %}
+							Благодарим за покупку!
+						{% endif %}
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!--content end-->
+<!--footer start-->
+<tr>
+    <td>
+        <table id="footer" cellpadding="0" cellspacing="0" border="0" align="center" class="w600" width="600" bgcolor="#cc5200">
+            <tr><td height="10" class="h10" colspan="3"></td></tr>
+            <tr>
+                <td width="20" class="w20"></td>
+                <td align="center">
+                        <span style="font-family: Arial; color: #fff; font-size: 11px;">
+                            {{ "now"|date("H:i, d.m.Y") }} - {{ 'footer.system'|trans }} <a href="{{ url('atrophy_meat_homepage') }}" title="{{ 'footer.title'|trans }}" style="font-family: Arial; color: #fff; font-size: 11px;">"{{ 'footer.shop_name'|trans }}"</a>
+                        </span>
+                </td>
+                <td width="20" class="w20"></td>
+            </tr>
+            <tr><td height="10" colspan="3" class="h10"></td></tr>
+        </table>
+    </td>
+</tr>
+<!--footer end-->
+<!--template gap start-->
+<tr>
+    <td>
+        <table cellpadding="0" cellspacing="0" border="0" align="center" width="600" class="w600">
+            <tr>
+                <td height="20" class="h20"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!--template gap end-->
+</table>
+<!--wrapper end-->
+</body>
+</html>
